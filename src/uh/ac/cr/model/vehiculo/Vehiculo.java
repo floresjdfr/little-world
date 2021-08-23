@@ -1,4 +1,4 @@
-package uh.ac.cr.model;
+package uh.ac.cr.model.vehiculo;
 public class Vehiculo {
     private int NumeroLlantas;
     private String Nombre;

@@ -1,4 +1,4 @@
-package uh.ac.cr.util;
+package uh.ac.cr.logic;
 
 import uh.ac.cr.model.Mundo;
 import uh.ac.cr.model.Gobierno;

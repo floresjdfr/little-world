@@ -1,4 +1,4 @@
-package uh.ac.cr.model;
+package uh.ac.cr.model.persona;
 import java.util.ArrayList;
 public abstract class Persona {
     private String nombre;
@@ -13,12 +13,6 @@ public abstract class Persona {
 
     public Persona() {
 
-    }
-
-    public abstract class administrarDinero {
-    }
-
-    public Persona(String nombreHerrero) {
     }
 
     public String getNombre() {

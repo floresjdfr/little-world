@@ -1,8 +1,8 @@
-package uh.ac.cr.model;
+package uh.ac.cr.model.persona;
 
 import java.util.ArrayList;
 
-public class Carpintero extends Persona{
+public class Carpintero extends Persona {
 
 
     public ArrayList<Carpintero> listaCarpintero = new ArrayList<>();
@@ -11,12 +11,7 @@ public class Carpintero extends Persona{
         super(nombre, apellidos, id);
     }
 
-    public Carpintero(String nombreCarpintero) {
-        super(nombreCarpintero);
 
-
-
-    }
 
 
 

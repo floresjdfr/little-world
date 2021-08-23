@@ -1,6 +1,5 @@
 package uh.ac.cr;
-import uh.ac.cr.model.Doctor;
-import uh.ac.cr.util.AdministradorMundo;
+import uh.ac.cr.logic.AdministradorMundo;
 
 import java.io.BufferedReader;
 import java.io.IOException;

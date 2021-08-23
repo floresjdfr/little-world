@@ -1,4 +1,5 @@
-package uh.ac.cr.model;
+package uh.ac.cr.model.persona;
+
 import java.util.ArrayList;
 public class Doctor extends Persona {
 
@@ -13,14 +14,7 @@ public class Doctor extends Persona {
         super(nombre, apellidos, id);
     }
 
-    public Doctor(String nombreDoctor) {
-        super(nombreDoctor);
 
-
-
-        String especialidad;
-
-    }
     public String getEspecialidad() {
         return especialidad;
     }

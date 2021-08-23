@@ -1,4 +1,5 @@
-package uh.ac.cr.model;
+package uh.ac.cr.model.persona;
+
 import java.util.ArrayList;
 public class Herrero extends Persona {
 
@@ -9,9 +10,5 @@ public class Herrero extends Persona {
         super(nombre, apellidos, id);
     }
 
-    public Herrero(String nombreHerrero) {
-        super(nombreHerrero);
 
-        String Caballos;
-    }
 }

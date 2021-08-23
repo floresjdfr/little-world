@@ -1,6 +1,7 @@
-package uh.ac.cr.model;
+package uh.ac.cr.model.vehiculo;
+
 import java.util.ArrayList;
-public class Automovil extends Vehiculo{
+public class Automovil extends Vehiculo {
 
     public ArrayList<Automovil> listaAutomovil= new ArrayList<>();
 

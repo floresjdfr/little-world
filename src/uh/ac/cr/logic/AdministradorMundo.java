@@ -1,13 +1,17 @@
-package uh.ac.cr.util;
+package uh.ac.cr.logic;
+import uh.ac.cr.logic.AdministradorArchivo;
 import uh.ac.cr.model.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import uh.ac.cr.model.Albañil;
+import uh.ac.cr.model.persona.Albañil;
+import uh.ac.cr.model.persona.Carpintero;
+import uh.ac.cr.model.persona.Doctor;
+import uh.ac.cr.model.persona.Herrero;
 
 public class AdministradorMundo {
-    public ArrayList<Doctor> listaDoctor = new ArrayList<>();
+    public ArrayList<uh.ac.cr.model.persona.Doctor> listaDoctor = new ArrayList<>();
 
 
 
@@ -69,13 +73,13 @@ public class AdministradorMundo {
                         listaAlbañil=listaAlbañil+1;
                         System.out.println("Please write the name of the albañil.");
                         NombreAlbañil = reader.readLine();
-                        Albañil = new Albañil(NombreAlbañil);
+                        //Albañil = new Albañil(NombreAlbañil);
                         System.out.println("Please write the apellido of the albañil.");
                         ApellidoAlbañil = reader.readLine();
-                        Albañil = new Albañil(ApellidoAlbañil);
+                        //Albañil = new Albañil(ApellidoAlbañil);
                         System.out.println("Please write the Id of the albañil.");
                         IdAlbañil = reader.readLine();
-                        Albañil = new Albañil(IdAlbañil);
+                        //Albañil = new Albañil(IdAlbañil);
                         boolean found = true;
                         if(Albañil == ""){
 
@@ -98,13 +102,13 @@ public class AdministradorMundo {
                     if (mundo != null) {
                         System.out.println("Please write the name of the doctor.");
                         NombreDoctor = reader.readLine();
-                        Doctor = new Doctor(NombreDoctor);
+                        //Doctor = new Doctor(NombreDoctor);
                         System.out.println("Please write the apellido of the doctor.");
                         ApellidoDoctor = reader.readLine();
-                        Doctor = new Doctor(ApellidoDoctor);
+                        //Doctor = new Doctor(ApellidoDoctor);
                         System.out.println("Please write the Id of the doctor.");
                         IdDoctor = reader.readLine();
-                        Doctor = new Doctor(IdDoctor);
+                        //Doctor = new Doctor(IdDoctor);
                         if(Doctor == ""){
                                 /*ico() >= 100000) (world.getLocalGovernment().getEconomicCapital() >= 500) {
                             //Creating street.
@@ -123,13 +127,13 @@ public class AdministradorMundo {
                     if (mundo != null) {
                         System.out.println("Please write the name of the Cocinero.");
                         NombreCocinero = reader.readLine();
-                        Cocinero = new Doctor(NombreCocinero);
+                        //Cocinero = new Doctor(NombreCocinero);
                         System.out.println("Please write the apellido of the Cocinero.");
                         ApellidoCocinero = reader.readLine();
-                        Cocinero = new Doctor(ApellidoCocinero);
+                        //Cocinero = new Doctor(ApellidoCocinero);
                         System.out.println("Please write the Id of the Cocinero.");
                         IdCocinero = reader.readLine();
-                        Doctor = new Doctor(IdCocinero);
+                        //Doctor = new Doctor(IdCocinero);
                         if(Cocinero == ""){
                                 /*ico() >= 100000) (world.getLocalGovernment().getEconomicCapital() >= 500) {
                             //Creating street.
@@ -149,13 +153,13 @@ public class AdministradorMundo {
                         listaCarpintero=listaCarpintero+1;
                         System.out.println("Please write the name of the carpintero.");
                         NombreCarpintero = reader.readLine();
-                        Carpintero = new Carpintero(NombreCarpintero);
+                        //Carpintero = new Carpintero(NombreCarpintero);
                         System.out.println("Please write the apellido of the carpintero.");
                         ApellidoCarpintero = reader.readLine();
-                        Carpintero = new Carpintero(ApellidoCarpintero);
+                        //Carpintero = new Carpintero(ApellidoCarpintero);
                         System.out.println("Please write the Id of the carpintero.");
                         IdCarpintero = reader.readLine();
-                        Carpintero = new Carpintero(IdCarpintero);
+                        //Carpintero = new Carpintero(IdCarpintero);
                         if(Carpintero == ""){
                                 /*ico() >= 100000) (world.getLocalGovernment().getEconomicCapital() >= 500) {
                             //Creating street.
@@ -176,13 +180,13 @@ public class AdministradorMundo {
                         listaHerrero=listaHerrero+1;
                         System.out.println("Please write the name of the herrero.");
                         NombreHerrero = reader.readLine();
-                        Herrero = new Herrero(NombreHerrero);
+                        //Herrero = new Herrero(NombreHerrero);
                         System.out.println("Please write the apellido of the herrero.");
                         ApellidoHerrero = reader.readLine();
-                        Herrero = new Herrero(ApellidoCarpintero);
+                        //Herrero = new Herrero(ApellidoCarpintero);
                         System.out.println("Please write the Id of the herrero.");
                         IdHerrero = reader.readLine();
-                        Herrero = new Herrero(IdHerrero);
+                        //Herrero = new Herrero(IdHerrero);
                         if(Herrero == ""){
                                 /*ico() >= 100000) (world.getLocalGovernment().getEconomicCapital() >= 500) {
                             //Creating street.

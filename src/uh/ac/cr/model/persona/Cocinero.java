@@ -1,4 +1,4 @@
-package uh.ac.cr.model;
+package uh.ac.cr.model.persona;
 
 
 import java.util.ArrayList;
@@ -11,12 +11,5 @@ public class Cocinero extends Persona {
         super(nombre, apellidos, id);
     }
 
-    public Cocinero(String nombreCocinero) {
-        super(nombreCocinero);
 
-
-        String especialidad;
-
-
-    }
 }

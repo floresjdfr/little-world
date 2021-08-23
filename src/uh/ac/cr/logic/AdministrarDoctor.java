@@ -1,4 +1,8 @@
-package uh.ac.cr.model;
+package uh.ac.cr.logic;
+import uh.ac.cr.model.Mundo;
+import uh.ac.cr.model.persona.Doctor;
+import uh.ac.cr.model.persona.Persona;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,7 +10,7 @@ public class AdministrarDoctor extends Persona {
     Scanner Datos;
     private ArrayList<Doctor> listaDoctores;
 
-    administrarDinero administrarDinero = null;
+    //administrarDinero administrarDinero = null;
 
     public class AdministradorDoctor extends Mundo {
 
@@ -26,13 +30,7 @@ public class AdministrarDoctor extends Persona {
         }
         public void pacienteMuere(){
 
-
-
         }
-
-
-
-
 }
 
 
