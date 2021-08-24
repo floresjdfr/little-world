@@ -1,6 +1,9 @@
 package uh.ac.cr.model.persona;
 
 
+import uh.ac.cr.model.Prestamo;
+import uh.ac.cr.model.vehiculo.Vehiculo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,14 +11,12 @@ public class Cocinero extends Persona {
 
     private ArrayList<String> recetas;
 
-    public Cocinero(int id, String nombre, String apellidos, double dinero, double salario, ArrayList<String> recetas) {
-        super(id, nombre, apellidos, dinero, salario);
+    public Cocinero(int id, String nombre, String apellidos, double dinero, double salario, int casas, ArrayList<Vehiculo>
+            vehiculos, ArrayList<Prestamo> prestamos, ArrayList<String> recetas) {
+        super(id, nombre, apellidos, dinero, salario, casas, vehiculos, prestamos);
         this.recetas = recetas;
     }
 
-    public Cocinero(int id) {
-        super(id);
-    }
     public ArrayList<String> getRecetas() {
         return recetas;
     }

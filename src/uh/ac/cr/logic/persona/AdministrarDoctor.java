@@ -1,13 +1,16 @@
-package uh.ac.cr.logic;
+package uh.ac.cr.logic.persona;
+import uh.ac.cr.logic.Administrador;
 import uh.ac.cr.model.Mundo;
+import uh.ac.cr.model.Prestamo;
 import uh.ac.cr.model.persona.Doctor;
 import uh.ac.cr.model.persona.Persona;
+import uh.ac.cr.model.vehiculo.Vehiculo;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class AdministrarDoctor extends Administrador{
+public class AdministrarDoctor extends Administrador {
 
     public AdministrarDoctor(Mundo mundo) {
         super(mundo);
@@ -15,8 +18,8 @@ public class AdministrarDoctor extends Administrador{
     public ArrayList<Doctor> getListaDeDoctores() {
         return super.getMundo().getListaDoctores();
     }
-    public void crearDoctor(int id, String nombre, String apellidos, double dinero, double salario, String especialidad){
-        Doctor nuevoDoctor = new Doctor(id, nombre, apellidos, dinero, 5, especialidad);
+    public void crearDoctor(int id, String nombre, String apellidos, String especialidad){
+        Doctor nuevoDoctor = new Doctor(id, nombre, apellidos, 0, 5, 0, new ArrayList<>(), new ArrayList<>(), especialidad);
         super.getMundo().crearDoctor(nuevoDoctor);
     }
     public void ganarDinero(){

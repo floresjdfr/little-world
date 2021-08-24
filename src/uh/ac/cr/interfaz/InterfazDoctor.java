@@ -27,7 +27,7 @@ public class InterfazDoctor extends Interfaz{
         apellidos = input.nextLine();
         System.out.println("Especialidad doctor");
         especialidad = input.nextLine();
-
+        //int id, String nombre, String apellidos, double dinero, double salario, int casas, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos, String especialidad
         super.getJuego().crearDoctor(Id, nombre, apellidos, especialidad);
     }
     public void imprimirDoctores(){

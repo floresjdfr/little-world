@@ -11,9 +11,10 @@ public class InterfazCocinero extends Interfaz{
     }
 
     public void crearCocinero(){
-        int id;
-        String nombre;
-        String apellidos;
+        int id = 0;
+        String nombre = "";
+        String apellidos = "";
+        String recetas = "";
 
         Scanner input = new Scanner(System.in);
         System.out.println("ID cocinero");
@@ -24,7 +25,17 @@ public class InterfazCocinero extends Interfaz{
         System.out.println("Apellidos cocinero");
         apellidos = input.nextLine();
 
-        super.getJuego().crearCocinero(id, nombre, apellidos);
+        Boolean recetaCompeta = false;
+        while(!recetaCompeta){
+            System.out.println("Recetas del cocinero (escriba las recetas separadas por ','): ");
+            recetas = input.nextLine();
+            String recetaNoDisponible = super.getJuego().recetasNoDisponibles(recetas);
+            if (recetaNoDisponible != null)
+                System.out.println("Error: Receta " + recetaNoDisponible + " ya es realizada por otro cocinero");
+            else
+                recetaCompeta = true;
+        }
+        super.getJuego().crearCocinero(id, nombre, apellidos, recetas);
 
     }
     public void ganarDinero(){
