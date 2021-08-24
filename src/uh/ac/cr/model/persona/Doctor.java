@@ -1,19 +1,19 @@
 package uh.ac.cr.model.persona;
 
 import java.util.ArrayList;
-public class Doctor extends Persona {
+public class Doctor extends Persona{
 
     private String especialidad;
-    private int dinero;
-    private String paciente;
 
 
-    public ArrayList<Doctor> listaDoctor = new ArrayList<>();
-
-    public Doctor(String nombre, String apellidos, int id) {
-        super(nombre, apellidos, id);
+    public Doctor(int id, String nombre, String apellidos, double dinero, double salario, String especialidad) {
+        super(id, nombre, apellidos, dinero, salario);
+        this.especialidad = especialidad;
     }
 
+    public Doctor(int id) {
+        super(id);
+    }
 
     public String getEspecialidad() {
         return especialidad;
@@ -23,19 +23,20 @@ public class Doctor extends Persona {
         this.especialidad = especialidad;
     }
 
-    public int getDinero() {
-        return dinero;
+    @Override
+    public void ganarDinero() {
+        super.setDinero(super.getDinero() + super.getSalario());
     }
 
-    public void setDinero(int dinero) {
-        this.dinero = dinero;
+    @Override
+    public void perderDinero() {
+        super.setDinero(super.getDinero() - 3);
     }
 
-    public String getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(String paciente) {
-        this.paciente = paciente;
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "especialidad='" + especialidad + '\'' + super.toString() + '\'' +
+                '}';
     }
 }

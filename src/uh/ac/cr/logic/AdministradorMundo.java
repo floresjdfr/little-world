@@ -61,7 +61,7 @@ public class AdministradorMundo {
                     if (mundo == null) {
                         System.out.println("Por favor escriba el nombre del nuevo mundo");
                         String worldName = reader.readLine();
-                        mundo = new Mundo(worldName);
+                        //mundo = new Mundo(worldName);
 
                         mundo.setGobierno((uh.ac.cr.model.Gobierno) Gobierno);
                     } else {

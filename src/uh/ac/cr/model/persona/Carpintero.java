@@ -5,14 +5,23 @@ import java.util.ArrayList;
 public class Carpintero extends Persona {
 
 
-    public ArrayList<Carpintero> listaCarpintero = new ArrayList<>();
-
-    public Carpintero (String nombre, String apellidos, int id) {
-        super(nombre, apellidos, id);
+    public Carpintero(int id, String nombre, String apellidos, double dinero, double salario) {
+        super(id, nombre, apellidos, dinero, salario);
     }
 
+    public Carpintero(int id) {
+        super(id);
+    }
 
+    @Override
+    public void ganarDinero() {
+        super.setDinero(super.getDinero() + super.getSalario());
+    }
 
+    @Override
+    public void perderDinero() {
+
+    }
 
 
 }

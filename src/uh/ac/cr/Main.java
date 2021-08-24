@@ -1,5 +1,7 @@
 package uh.ac.cr;
+import uh.ac.cr.interfaz.InterfazDoctor;
 import uh.ac.cr.logic.AdministradorMundo;
+import uh.ac.cr.logic.Juego;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,6 +9,8 @@ import java.io.InputStreamReader;
 public class Main {
 
     public static void main(String[] args) {
+
+        /*
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         AdministradorMundo administradorMundo = new AdministradorMundo();
 
@@ -60,7 +64,16 @@ public class Main {
 
         }
 
-        // write your code here
+         */
+        Juego juego = Juego.getInstance();
+        InterfazDoctor interfazDoctor = new InterfazDoctor();
+
+        interfazDoctor.crearDoctor();
+        interfazDoctor.crearDoctor();
+        interfazDoctor.imprimirDoctores();
+
+
+
     }
 }
 
