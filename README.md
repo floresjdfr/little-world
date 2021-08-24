@@ -1,4 +1,4 @@
-#Comandos:
+# Comandos:
 
 - Salir
 - Comenzar nuevo mundo
