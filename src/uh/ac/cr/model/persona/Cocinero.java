@@ -6,9 +6,9 @@ import java.util.List;
 
 public class Cocinero extends Persona {
 
-    private List<String> recetas;
+    private ArrayList<String> recetas;
 
-    public Cocinero(int id, String nombre, String apellidos, double dinero, double salario, List<String> recetas) {
+    public Cocinero(int id, String nombre, String apellidos, double dinero, double salario, ArrayList<String> recetas) {
         super(id, nombre, apellidos, dinero, salario);
         this.recetas = recetas;
     }
@@ -16,10 +16,10 @@ public class Cocinero extends Persona {
     public Cocinero(int id) {
         super(id);
     }
-    public List<String> getRecetas() {
+    public ArrayList<String> getRecetas() {
         return recetas;
     }
-    public void setRecetas(List<String> recetas) {
+    public void setRecetas(ArrayList<String> recetas) {
         this.recetas = recetas;
     }
     @Override
@@ -32,5 +32,11 @@ public class Cocinero extends Persona {
     }
     public void agregarReceta(String nuevaReceta){
         recetas.add(nuevaReceta);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "recetas: " + recetas.toString();
     }
 }

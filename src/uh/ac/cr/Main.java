@@ -1,11 +1,12 @@
 package uh.ac.cr;
+import uh.ac.cr.interfaz.InterfazCocinero;
 import uh.ac.cr.interfaz.InterfazDoctor;
-import uh.ac.cr.logic.AdministradorMundo;
+import uh.ac.cr.interfaz.InterfazJuego;
 import uh.ac.cr.logic.Juego;
+import uh.ac.cr.model.Mundo;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -65,12 +66,65 @@ public class Main {
         }
 
          */
-        Juego juego = Juego.getInstance();
-        InterfazDoctor interfazDoctor = new InterfazDoctor();
 
-        interfazDoctor.crearDoctor();
-        interfazDoctor.crearDoctor();
-        interfazDoctor.imprimirDoctores();
+
+        Scanner input = new Scanner(System.in);
+        Boolean salir = false;
+        Mundo mundo = null;
+        Juego juego = null;
+        InterfazDoctor interfazDoctor = null;
+        InterfazCocinero interfazCocinero = null;
+        InterfazJuego interfazJuego = null;
+
+        String opcion = "";
+
+        System.out.println("Juego Pequeño Mundo");
+        while(!salir){
+            System.out.print("> ");
+            opcion = input.nextLine();
+            switch (opcion){
+                case "Salir":{
+                    salir = true;
+                    break;
+                }
+                case "Comenzar nuevo mundo":{
+                    System.out.println("Nombre del nuevo mundo: ");
+                    String nombreMundo = input.nextLine();
+                    mundo = new Mundo(nombreMundo);
+                    juego = new Juego(mundo);
+                    interfazDoctor = new InterfazDoctor(juego);
+                    interfazCocinero = new InterfazCocinero(juego);
+                    interfazJuego = new InterfazJuego(juego);
+                    break;
+                }
+                case "Crear doctor":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazDoctor.crearDoctor();
+                    break;
+                }
+                case "Crear cocinero":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazCocinero.crearCocinero();
+                    break;
+                }
+                case "Imprimir estadisticas":{
+                    interfazJuego.imprimirEstadisticas();
+                    break;
+                }
+                default:{
+                    System.out.println("Comando no reconocido.");
+                    break;
+                }
+
+
+            }//End switch
+        }//End while
 
 
 

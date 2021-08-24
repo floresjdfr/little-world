@@ -61,13 +61,11 @@ public abstract class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" +
-                "Id=" + Id +
-                ", nombre='" + nombre + '\'' +
-                ", apellidos='" + apellidos + '\'' +
-                ", dinero=" + dinero +
-                ", salario=" + salario +
-                '}';
+        return  "Id: " + Id + '\n' +
+                "Nombre: " + nombre + '\n' +
+                "Apellidos: " + apellidos + '\n' +
+                "Dinero: " + dinero + '\n' +
+                "Salario: " + salario + '\n';
     }
 
     public abstract void ganarDinero();

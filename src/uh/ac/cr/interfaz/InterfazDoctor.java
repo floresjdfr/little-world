@@ -6,20 +6,16 @@ import uh.ac.cr.model.persona.Doctor;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class InterfazDoctor {
+public class InterfazDoctor extends Interfaz{
 
-    private Juego juego;
-
-    public InterfazDoctor() {
-        this.juego = Juego.getInstance();
+    public InterfazDoctor(Juego juego) {
+        super(juego);
     }
 
     public void crearDoctor(){
         int Id;
         String nombre;
         String apellidos;
-        double dinero = 0;
-        double salario = 5;
         String especialidad;
         Scanner input = new Scanner(System.in);
         System.out.println("ID doctor");
@@ -32,11 +28,11 @@ public class InterfazDoctor {
         System.out.println("Especialidad doctor");
         especialidad = input.nextLine();
 
-        juego.crearDoctor(Id, nombre, apellidos, dinero, salario, especialidad);
+        super.getJuego().crearDoctor(Id, nombre, apellidos, especialidad);
     }
     public void imprimirDoctores(){
         System.out.println("Lista de doctores");
-        ArrayList<Doctor> docs = juego.obtenerDoctores();
+        ArrayList<Doctor> docs = super.getJuego().getDoctores();
         for (int i = 0; i < docs.size(); i++){
             System.out.println("Doctor No: " + (i+1) + docs.get(i));
         }
