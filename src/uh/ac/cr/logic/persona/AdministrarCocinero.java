@@ -20,6 +20,12 @@ public class AdministrarCocinero extends Administrador {
     }
 
     public void crearCocinero(int id, String nombre, String apellidos, String recetas){
+
+        if(super.getMundo().getContadorCreacion() == 5){//Por cada 5 operaciones de creacion las personas reciben 1 dolar
+            super.getMundo().darDineroATodos(1);
+            super.getMundo().resetCotnadorCreacion();
+        }
+
         String[] arrRecetas = recetas.toLowerCase(Locale.ROOT).split(",");
         ArrayList<String> listaRecetas = new ArrayList<>(Arrays.asList(arrRecetas));
         super.getMundo().crearCocinero(new Cocinero(id, nombre, apellidos, 0, 0.5, 0,

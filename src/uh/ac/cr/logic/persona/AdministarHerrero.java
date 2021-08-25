@@ -13,6 +13,12 @@ public class AdministarHerrero extends Administrador {
     public Boolean crearHerrero(int id, String nombre, String apellidos){
 
         try {
+
+            if(super.getMundo().getContadorCreacion() == 5){//Por cada 5 operaciones de creacion las personas reciben 1 dolar
+                super.getMundo().darDineroATodos(1);
+                super.getMundo().resetCotnadorCreacion();
+            }
+
             int cantDoc = super.getMundo().getListaDoctores().size();//Cantidad actual de doctores
             int cantCoc = super.getMundo().getListaCocineros().size();//Cantidad actual de cocineros
             int cantHerr;

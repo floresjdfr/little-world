@@ -16,6 +16,8 @@ public class Mundo {
     private ArrayList<Herrero> listaHerreros;
     private ArrayList<Carpintero> listaCarpinteros;
 
+    private int contadorCreacion;
+
     public Mundo(String nombre) {
         this.name = nombre;
         gobierno = null;
@@ -67,6 +69,32 @@ public class Mundo {
     }
     public void setListaCarpinteros(ArrayList<Carpintero> listaCarpinteros) {
         this.listaCarpinteros = listaCarpinteros;
+    }
+    public int getContadorCreacion() {
+        return contadorCreacion;
+    }
+    public void setContadorCreacion(int contadorCreacion) {
+        this.contadorCreacion = contadorCreacion;
+    }
+
+    //Metodos generales
+    public void aumentarContadorCreacion(){
+        contadorCreacion++;
+    }
+    public void resetCotnadorCreacion(){
+        contadorCreacion = 0;
+    }
+    public void darDineroATodos(double dinero){
+        for (Doctor d: listaDoctores)
+            d.setDinero(d.getDinero() + dinero);
+        for (Cocinero c: listaCocineros)
+            c.setDinero(c.getDinero() + dinero);
+        for (Albañil a: listaAlbaniles)
+            a.setDinero(a.getDinero() + dinero);
+        for (Herrero h: listaHerreros)
+            h.setDinero(h.getDinero() + dinero);
+        for (Carpintero c: listaCarpinteros)
+            c.setDinero(c.getDinero() + dinero);
     }
 
     //Doctores
