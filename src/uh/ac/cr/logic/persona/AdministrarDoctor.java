@@ -23,13 +23,15 @@ public class AdministrarDoctor extends Administrador {
 
     public void crearDoctor(int id, String nombre, String apellidos, String especialidad) {
 
+        Doctor nuevoDoctor = new Doctor(id, nombre, apellidos, 0, 5, 0, new ArrayList<>(), new ArrayList<>(), especialidad);
+        super.getMundo().crearDoctor(nuevoDoctor);
+
+        super.getMundo().aumentarContadorCreacion();
+
         if (super.getMundo().getContadorCreacion() == 5) {//Por cada 5 operaciones de creacion las personas reciben 1 dolar
             super.getMundo().darDineroATodos(1);
             super.getMundo().resetCotnadorCreacion();
         }
-
-        Doctor nuevoDoctor = new Doctor(id, nombre, apellidos, 0, 5, 0, new ArrayList<>(), new ArrayList<>(), especialidad);
-        super.getMundo().crearDoctor(nuevoDoctor);
     }
 
     public void ganarDinero() {

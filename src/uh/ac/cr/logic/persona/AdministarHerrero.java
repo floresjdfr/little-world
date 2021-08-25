@@ -18,6 +18,8 @@ public class AdministarHerrero extends Administrador {
                 super.getMundo().darDineroATodos(1);
                 super.getMundo().resetCotnadorCreacion();
             }
+            else
+                super.getMundo().aumentarContadorCreacion();
 
             int cantDoc = super.getMundo().getListaDoctores().size();//Cantidad actual de doctores
             int cantCoc = super.getMundo().getListaCocineros().size();//Cantidad actual de cocineros
@@ -32,6 +34,13 @@ public class AdministarHerrero extends Administrador {
             if (cantDoc >= cantHerr * 0.5 && cantCoc >= cantHerr * 0.5) {
                 super.getMundo().crearHerrero(new Herrero(id, nombre, apellidos, 3, 3, 0,
                         new ArrayList<>(), new ArrayList<>()));
+
+                super.getMundo().aumentarContadorCreacion();
+
+                if (super.getMundo().getContadorCreacion() == 5) {//Por cada 5 operaciones de creacion las personas reciben 1 dolar
+                    super.getMundo().darDineroATodos(1);
+                    super.getMundo().resetCotnadorCreacion();
+                }
                 return true;
             }
             return false;

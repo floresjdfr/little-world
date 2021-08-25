@@ -14,11 +14,6 @@ public class AdministrarCarpintero extends Administrador {
     public Boolean crearCarpintero(int id, String nombre, String apellidos){
         try {
 
-            if(super.getMundo().getContadorCreacion() == 5){//Por cada 5 operaciones de creacion las personas reciben 1 dolar
-                super.getMundo().darDineroATodos(1);
-                super.getMundo().resetCotnadorCreacion();
-            }
-
             int cantDoc = super.getMundo().getListaDoctores().size();//Cantidad actual de doctores
             int cantCarp;
 
@@ -31,6 +26,12 @@ public class AdministrarCarpintero extends Administrador {
             if (cantDoc >= cantCarp) {
                 super.getMundo().crearCarpintero(new Carpintero(id, nombre, apellidos, 0, 4, 0,
                         new ArrayList<>(), new ArrayList<>()));
+                super.getMundo().aumentarContadorCreacion();
+
+                if (super.getMundo().getContadorCreacion() == 5) {//Por cada 5 operaciones de creacion las personas reciben 1 dolar
+                    super.getMundo().darDineroATodos(1);
+                    super.getMundo().resetCotnadorCreacion();
+                }
                 return true;
             }
             return false;
@@ -38,5 +39,7 @@ public class AdministrarCarpintero extends Administrador {
             System.err.println(ex.getStackTrace());
             return false;
         }
+
+
     }
 }
