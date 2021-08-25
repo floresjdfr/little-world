@@ -4,30 +4,40 @@ import uh.ac.cr.logic.persona.*;
 import uh.ac.cr.model.Mundo;
 import uh.ac.cr.model.persona.*;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Juego {
 
-    private AdministradorJuego adminJuego;
+    private AdministrarMundo adminJuego;
     private AdministrarDoctor adminDoctor;
     private AdministrarCocinero adminCocinero;
     private AdministrarAlbañil adminAlbanil;
     private AdministarHerrero adminHerrero;
     private AdministrarCarpintero adminCarpintero;
+    private AdministrarMundo adminMundo;
 
     public Juego(Mundo mundo){
-        this.adminJuego = new AdministradorJuego(mundo);
+        this.adminJuego = new AdministrarMundo(mundo);
         this.adminDoctor = new AdministrarDoctor(mundo);
         this.adminCocinero = new AdministrarCocinero(mundo);
         this.adminAlbanil = new AdministrarAlbañil(mundo);
         this.adminHerrero = new AdministarHerrero(mundo);
         this.adminCarpintero = new AdministrarCarpintero(mundo);
+        this.adminMundo = new AdministrarMundo(mundo);
     }
 
     //Mundo
     public String getNombreMundo(){
         return adminJuego.getNombreMundo();
+    }
+    public Boolean sembrarArbol(){
+        return adminMundo.sembrarArbol();
+    }
+    public int getArboles(){
+        return adminMundo.getArboles();
+    }
+    public Boolean construirCasa(int idPersona){
+        return adminMundo.construirCasa(idPersona);
     }
 
     //Doctores

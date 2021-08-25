@@ -69,7 +69,7 @@ public abstract class Persona {
     public int getCantidadBicicletas(){
         int counter = 0;
         for (Vehiculo v: this.vehiculos){
-            if (v.getClass().getSimpleName().equals("Bicicleta"))
+            if (v.getNombre().equals("Bicicleta"))
                 counter++;
         }
         return counter;
@@ -77,10 +77,14 @@ public abstract class Persona {
     public int getCantidadAutomoviles(){
         int counter = 0;
         for (Vehiculo v: this.vehiculos){
-            if (v.getClass().getSimpleName().equals("Automovil"))
+            if (v.getNombre().equals("Automovil"))
                 counter++;
         }
         return counter;
+    }
+    public void construirCasa(double costo){
+        dinero -= costo;
+        casas++;
     }
     public abstract void ganarDinero();
     public abstract void perderDinero();

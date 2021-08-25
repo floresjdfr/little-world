@@ -1,8 +1,9 @@
 package uh.ac.cr.logic;
 
 import uh.ac.cr.model.Mundo;
+import uh.ac.cr.model.persona.Persona;
 
-public class Administrador {
+public abstract class Administrador {
 
     private Mundo mundo;
 

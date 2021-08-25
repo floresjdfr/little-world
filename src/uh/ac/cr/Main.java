@@ -140,6 +140,22 @@ public class Main {
                     interfazCarpintero.crearCarpintero();
                     break;
                 }
+                case "Sembrar arbol":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazJuego.sembrarArbol();
+                    break;
+                }
+                case "Construir casa":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazJuego.contruirCasa();
+                    break;
+                }
                 case "Imprimir estadisticas":{
                     interfazJuego.imprimirEstadisticas();
                     break;

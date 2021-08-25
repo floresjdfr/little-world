@@ -16,3 +16,6 @@
 
 'Imprimir estadisticas'
 
+'Sembrar arbol'
+
+'Comprar casa'

@@ -16,17 +16,24 @@ public class Mundo {
     private ArrayList<Herrero> listaHerreros;
     private ArrayList<Carpintero> listaCarpinteros;
 
+    private int arboles;
+
     private int contadorCreacion;
+    private int contadorMuerteArbol;
+    private int contadorPrestamoGobierno;
+    private int contadorDividirDineroGobierno;
+
 
     public Mundo(String nombre) {
         this.name = nombre;
-        gobierno = null;
+        gobierno = new Gobierno(5000);
         listaDoctores = new ArrayList<>();
         listaCocineros = new ArrayList<>();
         listaAlbaniles = new ArrayList<>();
         listaHerreros = new ArrayList<>();
-        listaCocineros = new ArrayList<>();
         listaCarpinteros = new ArrayList<>();
+
+        arboles = 20;
     }
     public Gobierno getGobierno() {
         return gobierno;
@@ -76,6 +83,30 @@ public class Mundo {
     public void setContadorCreacion(int contadorCreacion) {
         this.contadorCreacion = contadorCreacion;
     }
+    public int getArboles() {
+        return arboles;
+    }
+    public void setArboles(int arboles) {
+        this.arboles = arboles;
+    }
+    public int getContadorMuerteArbol() {
+        return contadorMuerteArbol;
+    }
+    public void setContadorMuerteArbol(int contadorMuerteArbol) {
+        this.contadorMuerteArbol = contadorMuerteArbol;
+    }
+    public int getContadorPrestamoGobierno() {
+        return contadorPrestamoGobierno;
+    }
+    public void setContadorPrestamoGobierno(int contadorPrestamoGobierno) {
+        this.contadorPrestamoGobierno = contadorPrestamoGobierno;
+    }
+    public int getContadorDividirDineroGobierno() {
+        return contadorDividirDineroGobierno;
+    }
+    public void setContadorDividirDineroGobierno(int contadorDividirDineroGobierno) {
+        this.contadorDividirDineroGobierno = contadorDividirDineroGobierno;
+    }
 
     //Metodos generales
     public void aumentarContadorCreacion(){
@@ -83,6 +114,12 @@ public class Mundo {
     }
     public void resetCotnadorCreacion(){
         contadorCreacion = 0;
+    }
+    public void aumentarContadorMuerteArbol(){
+        contadorMuerteArbol++;
+    }
+    public void resetContadorMuerteArbol(){
+        contadorMuerteArbol = 0;
     }
     public void darDineroATodos(double dinero){
         for (Doctor d: listaDoctores)
@@ -96,11 +133,45 @@ public class Mundo {
         for (Carpintero c: listaCarpinteros)
             c.setDinero(c.getDinero() + dinero);
     }
+    public void sembrarArbol(){
+        arboles++;
+        gobierno.sembrarArbol();
+    }
+    public Persona buscarPersona(int idPersona){
+
+        Persona p = null;
+
+        p = this.buscarDoctor(idPersona);
+        if (p != null)
+            return p;
+        p = this.buscarCocinero(idPersona);
+        if(p != null)
+            return p;
+        p = this.buscarAlbanil(idPersona);
+        if(p != null)
+            return p;
+        p = this.buscarHerrero(idPersona);
+        if(p != null)
+            return p;
+        p = this.buscarCarpintero(idPersona);
+        if(p != null)
+            return p;
+        return p;
+    }
+
 
     //Doctores
     public void crearDoctor(Doctor d) {
         listaDoctores.add(d);
     }
+    public Doctor buscarDoctor(int idDoctor){
+        for (Doctor d: listaDoctores){
+            if (d.getId() == idDoctor)
+                return d;
+        }
+        return null;
+    }
+
 
     //Concineros
     public void crearCocinero(Cocinero c){
@@ -115,21 +186,58 @@ public class Mundo {
     public ArrayList<String> cocineroGetRecetas(Cocinero c){
         return c.getRecetas();
     }
+    public Cocinero buscarCocinero(int idCocinero){
+        for (Cocinero c: listaCocineros){
+            if (c.getId() == idCocinero)
+                return c;
+        }
+        return null;
+    }
 
 
     //Albaniles
     public void crearAlbanil(Albañil a){
         listaAlbaniles.add(a);
     }
+    public void pagarConstruccionAlbanil(Albañil a){
+        a.ganarDinero();
+    }
+    public Albañil buscarAlbanil(int idAlbanil){
+        for (Albañil a: listaAlbaniles){
+            if (a.getId() == idAlbanil)
+                return a;
+        }
+        return null;
+    }
 
     //Herreros
     public void crearHerrero(Herrero h){
         listaHerreros.add(h);
     }
+    public void pagarConstruccionHerreros(Herrero h){
+        h.ganarDinero();
+    }
+    public Herrero buscarHerrero(int idHerrero){
+        for (Herrero h: listaHerreros){
+            if (h.getId() == idHerrero)
+                return h;
+        }
+        return null;
+    }
 
     //Carpinteros
     public void crearCarpintero(Carpintero c){
         listaCarpinteros.add(c);
+    }
+    public void pagarConstruccionCarpintero(Carpintero c){
+        c.ganarDinero();
+    }
+    public Carpintero buscarCarpintero (int idCarpintero){
+        for (Carpintero c: listaCarpinteros){
+            if (c.getId() == idCarpintero)
+                return c;
+        }
+        return null;
     }
 
 }
