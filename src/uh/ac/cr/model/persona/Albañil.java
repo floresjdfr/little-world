@@ -19,6 +19,7 @@ public class Albañil extends Persona {
 
     @Override
     public void perderDinero() {}
+
 }
 
 

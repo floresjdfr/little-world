@@ -17,17 +17,17 @@ public class InterfazCocinero extends Interfaz{
         String recetas = "";
 
         Scanner input = new Scanner(System.in);
-        System.out.println("ID cocinero");
+        System.out.print("ID cocinero: ");
         id = input.nextInt();
         input.nextLine();
-        System.out.println("Nombre cocinero");
+        System.out.print("Nombre cocinero: ");
         nombre = input.nextLine();
-        System.out.println("Apellidos cocinero");
+        System.out.print("Apellidos cocinero: ");
         apellidos = input.nextLine();
 
         Boolean recetaCompeta = false;
         while(!recetaCompeta){
-            System.out.println("Recetas del cocinero (escriba las recetas separadas por ','): ");
+            System.out.print("Recetas del cocinero (escriba las recetas separadas por ','): ");
             recetas = input.nextLine();
             String recetaNoDisponible = super.getJuego().recetasNoDisponibles(recetas);
             if (recetaNoDisponible != null)

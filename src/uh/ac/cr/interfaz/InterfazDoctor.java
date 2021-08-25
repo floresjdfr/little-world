@@ -18,23 +18,16 @@ public class InterfazDoctor extends Interfaz{
         String apellidos;
         String especialidad;
         Scanner input = new Scanner(System.in);
-        System.out.println("ID doctor");
+        System.out.print("ID doctor: ");
         Id = input.nextInt();
         input.nextLine();
-        System.out.println("Nombre doctor");
+        System.out.print("Nombre doctor: ");
         nombre = input.nextLine();
-        System.out.println("Apellidos doctor");
+        System.out.print("Apellidos doctor: ");
         apellidos = input.nextLine();
-        System.out.println("Especialidad doctor");
+        System.out.print("Especialidad doctor: ");
         especialidad = input.nextLine();
         //int id, String nombre, String apellidos, double dinero, double salario, int casas, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos, String especialidad
         super.getJuego().crearDoctor(Id, nombre, apellidos, especialidad);
-    }
-    public void imprimirDoctores(){
-        System.out.println("Lista de doctores");
-        ArrayList<Doctor> docs = super.getJuego().getDoctores();
-        for (int i = 0; i < docs.size(); i++){
-            System.out.println("Doctor No: " + (i+1) + docs.get(i));
-        }
     }
 }

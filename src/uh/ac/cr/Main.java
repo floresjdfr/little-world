@@ -1,7 +1,5 @@
 package uh.ac.cr;
-import uh.ac.cr.interfaz.InterfazCocinero;
-import uh.ac.cr.interfaz.InterfazDoctor;
-import uh.ac.cr.interfaz.InterfazJuego;
+import uh.ac.cr.interfaz.*;
 import uh.ac.cr.logic.Juego;
 import uh.ac.cr.model.Mundo;
 
@@ -67,14 +65,16 @@ public class Main {
 
          */
 
-
         Scanner input = new Scanner(System.in);
         Boolean salir = false;
         Mundo mundo = null;
         Juego juego = null;
+        InterfazJuego interfazJuego = null;
         InterfazDoctor interfazDoctor = null;
         InterfazCocinero interfazCocinero = null;
-        InterfazJuego interfazJuego = null;
+        InterfazAlbanil interfazAlbanil = null;
+        InterfazHerrero interfazHerrero = null;
+        InterfazCarpintero interfazCarpintero = null;
 
         String opcion = "";
 
@@ -88,13 +88,16 @@ public class Main {
                     break;
                 }
                 case "Comenzar nuevo mundo":{
-                    System.out.println("Nombre del nuevo mundo: ");
+                    System.out.print("Nombre del nuevo mundo: ");
                     String nombreMundo = input.nextLine();
                     mundo = new Mundo(nombreMundo);
                     juego = new Juego(mundo);
+                    interfazJuego = new InterfazJuego(juego);
                     interfazDoctor = new InterfazDoctor(juego);
                     interfazCocinero = new InterfazCocinero(juego);
-                    interfazJuego = new InterfazJuego(juego);
+                    interfazAlbanil = new InterfazAlbanil(juego);
+                    interfazHerrero = new InterfazHerrero(juego);
+                    interfazCarpintero = new InterfazCarpintero(juego);
                     break;
                 }
                 case "Crear doctor":{
@@ -111,6 +114,30 @@ public class Main {
                         break;
                     }
                     interfazCocinero.crearCocinero();
+                    break;
+                }
+                case "Crear albañil":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazAlbanil.crearAlbanil();
+                    break;
+                }
+                case "Crear herrero":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazHerrero.crearHerrero();
+                    break;
+                }
+                case "Crear carpintero":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazCarpintero.crearCarpintero();
                     break;
                 }
                 case "Imprimir estadisticas":{

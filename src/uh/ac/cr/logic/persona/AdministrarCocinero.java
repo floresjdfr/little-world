@@ -14,10 +14,11 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Random;
 
-public class AdministradorCocinero extends Administrador {
-    public AdministradorCocinero(Mundo mundo) {
+public class AdministrarCocinero extends Administrador {
+    public AdministrarCocinero(Mundo mundo) {
         super(mundo);
     }
+
     public void crearCocinero(int id, String nombre, String apellidos, String recetas){
         String[] arrRecetas = recetas.toLowerCase(Locale.ROOT).split(",");
         ArrayList<String> listaRecetas = new ArrayList<>(Arrays.asList(arrRecetas));

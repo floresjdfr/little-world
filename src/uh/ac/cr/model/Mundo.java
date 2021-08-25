@@ -1,7 +1,6 @@
 package uh.ac.cr.model;
 
-import uh.ac.cr.model.persona.Cocinero;
-import uh.ac.cr.model.persona.Doctor;
+import uh.ac.cr.model.persona.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,12 +12,19 @@ public class Mundo {
     private Gobierno gobierno;
     private ArrayList<Doctor> listaDoctores;
     private ArrayList<Cocinero> listaCocineros;
+    private ArrayList<Albañil> listaAlbaniles;
+    private ArrayList<Herrero> listaHerreros;
+    private ArrayList<Carpintero> listaCarpinteros;
 
     public Mundo(String nombre) {
         this.name = nombre;
         gobierno = null;
         listaDoctores = new ArrayList<>();
         listaCocineros = new ArrayList<>();
+        listaAlbaniles = new ArrayList<>();
+        listaHerreros = new ArrayList<>();
+        listaCocineros = new ArrayList<>();
+        listaCarpinteros = new ArrayList<>();
     }
     public Gobierno getGobierno() {
         return gobierno;
@@ -44,6 +50,24 @@ public class Mundo {
     public void setListaCocineros(ArrayList<Cocinero> listaCocineros) {
         this.listaCocineros = listaCocineros;
     }
+    public ArrayList<Albañil> getListaAlbaniles() {
+        return listaAlbaniles;
+    }
+    public void setListaAlbaniles(ArrayList<Albañil> listaAlbaniles) {
+        this.listaAlbaniles = listaAlbaniles;
+    }
+    public ArrayList<Herrero> getListaHerreros() {
+        return listaHerreros;
+    }
+    public void setListaHerreros(ArrayList<Herrero> listaHerreros) {
+        this.listaHerreros = listaHerreros;
+    }
+    public ArrayList<Carpintero> getListaCarpinteros() {
+        return listaCarpinteros;
+    }
+    public void setListaCarpinteros(ArrayList<Carpintero> listaCarpinteros) {
+        this.listaCarpinteros = listaCarpinteros;
+    }
 
     //Doctores
     public void crearDoctor(Doctor d) {
@@ -62,6 +86,22 @@ public class Mundo {
     }
     public ArrayList<String> cocineroGetRecetas(Cocinero c){
         return c.getRecetas();
+    }
+
+
+    //Albaniles
+    public void crearAlbanil(Albañil a){
+        listaAlbaniles.add(a);
+    }
+
+    //Herreros
+    public void crearHerrero(Herrero h){
+        listaHerreros.add(h);
+    }
+
+    //Carpinteros
+    public void crearCarpintero(Carpintero c){
+        listaCarpinteros.add(c);
     }
 
 }

@@ -56,7 +56,7 @@ public abstract class Persona {
     }
     @Override
     public String toString() {
-        return "Id:" + Id +
+        return "Id:" + Id + '\n' +
                 "Nombre: " + nombre + '\n' +
                 "Apellidos: " + apellidos + '\n' +
                 "Dinero: " + dinero + '\n' +
