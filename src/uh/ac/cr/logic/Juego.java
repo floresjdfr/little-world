@@ -1,6 +1,7 @@
 package uh.ac.cr.logic;
 
 import uh.ac.cr.logic.persona.*;
+import uh.ac.cr.logic.vehiculo.AdministrarVehiculo;
 import uh.ac.cr.model.Mundo;
 import uh.ac.cr.model.persona.*;
 
@@ -15,6 +16,7 @@ public class Juego {
     private AdministarHerrero adminHerrero;
     private AdministrarCarpintero adminCarpintero;
     private AdministrarMundo adminMundo;
+    private AdministrarVehiculo adminVehiculo;
 
     public Juego(Mundo mundo){
         this.adminJuego = new AdministrarMundo(mundo);
@@ -24,6 +26,7 @@ public class Juego {
         this.adminHerrero = new AdministarHerrero(mundo);
         this.adminCarpintero = new AdministrarCarpintero(mundo);
         this.adminMundo = new AdministrarMundo(mundo);
+        this.adminVehiculo = new AdministrarVehiculo(mundo);
     }
 
     //Mundo
@@ -38,6 +41,9 @@ public class Juego {
     }
     public Boolean construirCasa(int idPersona){
         return adminMundo.construirCasa(idPersona);
+    }
+    public void comprarBicicleta(int idComprador, int idVendedor){
+        adminVehiculo.comprarBicicleta(idComprador, idVendedor);
     }
 
     //Doctores
@@ -79,6 +85,9 @@ public class Juego {
     }
     public ArrayList<Herrero> getHerreros(){
         return adminHerrero.getMundo().getListaHerreros();
+    }
+    public void construirBicicleta(int idHerreroConstructor){
+        adminVehiculo.construirBicicleta(idHerreroConstructor);
     }
 
     //Carpinteros

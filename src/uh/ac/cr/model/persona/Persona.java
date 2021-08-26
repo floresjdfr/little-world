@@ -1,5 +1,7 @@
 package uh.ac.cr.model.persona;
 import uh.ac.cr.model.Prestamo;
+import uh.ac.cr.model.vehiculo.Automovil;
+import uh.ac.cr.model.vehiculo.Bicicleta;
 import uh.ac.cr.model.vehiculo.Vehiculo;
 
 import java.util.ArrayList;
@@ -12,17 +14,19 @@ public abstract class Persona {
     private int casas;
     private ArrayList<Vehiculo> vehiculos;
     private ArrayList<Prestamo> prestamos;
+    private Boolean permisoConducirBicicleta;
 
 
     public Persona(int id, String nombre, String apellidos, double dinero, double salario, int casas, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos) {
         Id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.dinero = dinero;
+        this.dinero = 10;
         this.salario = salario;
         this.casas = casas;
         this.vehiculos = vehiculos;
         this.prestamos = prestamos;
+        this.permisoConducirBicicleta = false;
     }
     public int getId() {
         return Id;
@@ -54,6 +58,31 @@ public abstract class Persona {
     public void setSalario(double salario) {
         this.salario = salario;
     }
+    public int getCasas() {
+        return casas;
+    }
+    public void setCasas(int casas) {
+        this.casas = casas;
+    }
+    public ArrayList<Vehiculo> getVehiculos() {
+        return vehiculos;
+    }
+    public void setVehiculos(ArrayList<Vehiculo> vehiculos) {
+        this.vehiculos = vehiculos;
+    }
+    public ArrayList<Prestamo> getPrestamos() {
+        return prestamos;
+    }
+    public void setPrestamos(ArrayList<Prestamo> prestamos) {
+        this.prestamos = prestamos;
+    }
+    public Boolean getPermisoConducirBicicleta() {
+        return permisoConducirBicicleta;
+    }
+    public void setPermisoConducirBicicleta(Boolean permisoConducirBicicleta) {
+        this.permisoConducirBicicleta = permisoConducirBicicleta;
+    }
+
     @Override
     public String toString() {
         return "Id:" + Id + '\n' +
@@ -85,6 +114,29 @@ public abstract class Persona {
     public void construirCasa(double costo){
         dinero -= costo;
         casas++;
+    }
+
+    public void conducirBicicleta(){
+        dinero += 0.1;
+        permisoConducirBicicleta = false;
+    }
+    public void venderBicicleta(double precio){
+        dinero += precio;
+        eliminarBicicleta();
+    }
+    public void eliminarBicicleta(){
+        for(int i = 0; i < vehiculos.size(); i++){
+            if (vehiculos.get(i).getNombre() == "Bicicleta")
+                this.vehiculos.remove(i);
+        }
+    }
+    public void comprarBicicleta(double precio){
+        dinero -= precio;
+        vehiculos.add(new Bicicleta());
+    }
+    public void construirAutomovil(double precio){
+        vehiculos.add(new Automovil());
+        dinero -= precio;
     }
     public abstract void ganarDinero();
     public abstract void perderDinero();

@@ -1,5 +1,7 @@
 # Comandos:
 
+#### Nota: Las personas actualmente se crean con $10 para realizar pruebas
+
 'Salir'
 
 'Comenzar nuevo mundo'
@@ -18,4 +20,8 @@
 
 'Sembrar arbol'
 
-'Comprar casa'
+'Construir casa'
+
+'Construir bicicleta'
+
+'Comprar bicicleta'

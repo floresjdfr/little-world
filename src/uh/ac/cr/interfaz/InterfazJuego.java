@@ -85,4 +85,33 @@ public class InterfazJuego extends Interfaz{
         }
         System.out.println("Casa no pudo ser construida");
     }
+    public void construirBicicleta(){
+        int idHerreroConstructor;
+        Scanner input = new Scanner(System.in);
+
+
+        System.out.print("Identificacion de herrero constructor: ");
+        idHerreroConstructor = input.nextInt();
+        input.nextLine();
+
+        super.getJuego().construirBicicleta(idHerreroConstructor);
+    }
+
+    public void comprarBicicleta(){
+
+        Scanner input = new Scanner(System.in);
+
+        int idComprador;
+        int idVendedor;
+
+        System.out.print("Identificacion del comprador: ");
+        idComprador = input.nextInt();
+        input.nextLine();
+
+        System.out.print("Identificacion del vendedor: ");
+        idVendedor = input.nextInt();
+        input.nextLine();
+
+        super.getJuego().comprarBicicleta(idComprador, idVendedor);
+    }
 }

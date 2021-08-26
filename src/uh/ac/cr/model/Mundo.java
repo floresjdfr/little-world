@@ -26,7 +26,7 @@ public class Mundo {
 
     public Mundo(String nombre) {
         this.name = nombre;
-        gobierno = new Gobierno(5000);
+        gobierno = new Gobierno(0);
         listaDoctores = new ArrayList<>();
         listaCocineros = new ArrayList<>();
         listaAlbaniles = new ArrayList<>();
@@ -158,6 +158,15 @@ public class Mundo {
             return p;
         return p;
     }
+    public void conducirBicicleta(Persona p){
+        p.conducirBicicleta();
+    }
+    public void comprarBicicleta(Persona p, double precio){
+        p.comprarBicicleta(precio);
+    }
+    public void venderBicicleta(Persona h, double precio){
+        h.venderBicicleta(precio);
+    }
 
 
     //Doctores
@@ -224,6 +233,10 @@ public class Mundo {
         }
         return null;
     }
+    public void construirBicicleta(Herrero h, double precio){
+        h.construirBicicleta(precio);
+    }
+
 
     //Carpinteros
     public void crearCarpintero(Carpintero c){

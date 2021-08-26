@@ -156,6 +156,22 @@ public class Main {
                     interfazJuego.contruirCasa();
                     break;
                 }
+                case "Construir bicicleta":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazJuego.construirBicicleta();
+                    break;
+                }
+                case "Comprar bicicleta":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazJuego.comprarBicicleta();
+                    break;
+                }
                 case "Imprimir estadisticas":{
                     interfazJuego.imprimirEstadisticas();
                     break;
