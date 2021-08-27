@@ -128,12 +128,29 @@ public class AdministrarMundo extends Administrador {
 
     public Boolean solicitarPrestamo(int idPrestamista, String interesado, double totalPrestamo) {
 
-        if (interesado.toLowerCase(Locale.ROOT).equals("gobierno")) {
-            //prestamo gobierno
-            return true;
+        Persona personaPrestamista = this.buscarPersona(idPrestamista);
+        int idInteresado;
+
+        if (personaPrestamista == null) {
+            System.out.println("Persona prestamista no existe");
+            return false;
         }
 
-        int idInteresado;
+        if (interesado.toLowerCase(Locale.ROOT).equals("gobierno")) {
+
+            if (personaPrestamista.getDinero() >= totalPrestamo) {
+                if (this.getMundo().getGobierno().getPrestamos().size() < 2) {
+                    this.getMundo().getGobierno().solicitarPrestamo(idPrestamista, totalPrestamo);
+                    personaPrestamista.prestarDinero(totalPrestamo);
+                    return true;
+                }
+                System.out.println("Gobierno ya posee 2 prestamos activos");
+                return false;
+            }
+            System.out.println("Persona prestamista no dispone de dinero suficiente");
+            return false;
+        }
+
 
         try {
             idInteresado = Integer.parseInt(interesado);
@@ -143,9 +160,8 @@ public class AdministrarMundo extends Administrador {
         }
 
         Persona personaInteresada = this.buscarPersona(idInteresado);
-        Persona personaPrestamista = this.buscarPersona(idPrestamista);
 
-        if (personaInteresada != null && personaPrestamista != null) {
+        if (personaInteresada != null) {
             if (personaPrestamista.getDinero() >= totalPrestamo) {
                 personaInteresada.solicitarPrestamo(idPrestamista, totalPrestamo);
                 personaPrestamista.prestarDinero(totalPrestamo);
@@ -154,30 +170,45 @@ public class AdministrarMundo extends Administrador {
             System.out.println("Persona prestamista no dispone de dinero suficiente");
             return false;
         }
-
-        System.out.println("Persona interesada o prestamista no existe");
+        System.out.println("Persona interesada no existe");
         return false;
     }
 
-    public Boolean pagarPrestamo(int idPrestamista, String idPagador, double cantidadAPagar){
+    public Boolean pagarPrestamo(int idPrestamista, String idPagador, double cantidadAPagar) {
 
         int idPagadorInt;
+        Persona personaPrestamista = this.buscarPersona(idPrestamista);
 
-        if (idPagador.toLowerCase(Locale.ROOT).equals("gobierno")){
-            return true;
+        //Verifica si persona prestamista existe
+        if (personaPrestamista == null) {
+            System.out.println("Persona prestamista no existe");
+            return false;
         }
-        try{
+
+        //Verifica si gobierno es quien realiza solicitud
+        if (idPagador.toLowerCase(Locale.ROOT).equals("gobierno")) {
+            if (this.getMundo().getGobierno().getCapitalEconomico() >= cantidadAPagar) {
+                this.getMundo().getGobierno().pagarPrestamo(idPrestamista, cantidadAPagar);
+                personaPrestamista.recibirPagoPrestamo(cantidadAPagar);
+                return true;
+            }
+            System.out.println("Persona pagadora no dispone de dinero suficiente");
+            return false;
+        }
+
+        //Convierte el id en int
+        try {
             idPagadorInt = Integer.parseInt(idPagador);
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Identificacion del pagador no valida");
             return false;
         }
 
-        Persona personaPagadora = this.buscarPersona(idPagadorInt);
-        Persona personaPrestamista = this.buscarPersona(idPrestamista);
 
-        if (personaPagadora != null && personaPrestamista != null) {
+        Persona personaPagadora = this.buscarPersona(idPagadorInt);
+
+        //Realiza el proceso de pago del prestamo en caso que sea de persona a persona
+        if (personaPagadora != null) {
             if (personaPagadora.getDinero() >= cantidadAPagar) {
                 personaPagadora.pagarPrestamo(idPrestamista, cantidadAPagar);
                 personaPrestamista.recibirPagoPrestamo(cantidadAPagar);
@@ -186,8 +217,10 @@ public class AdministrarMundo extends Administrador {
             System.out.println("Persona pagadora no dispone de dinero suficiente");
             return false;
         }
-        System.out.println("Persona pagadora o prestamista no existe");
+        System.out.println("Persona pagadora no existe");
         return false;
     }
-
+    String imprimirGobierno(){
+        return this.getMundo().getGobierno().toString();
+    }
 }

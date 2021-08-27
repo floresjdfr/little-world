@@ -26,7 +26,7 @@ public class Mundo {
 
     public Mundo(String nombre) {
         this.name = nombre;
-        gobierno = new Gobierno(0);
+        gobierno = new Gobierno(0, new ArrayList<>());
         listaDoctores = new ArrayList<>();
         listaCocineros = new ArrayList<>();
         listaAlbaniles = new ArrayList<>();

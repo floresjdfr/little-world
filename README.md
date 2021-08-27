@@ -31,4 +31,3 @@
 'Solicitar prestamo'
 
 'Pagar prestamo'
-'Comprar bicicleta'

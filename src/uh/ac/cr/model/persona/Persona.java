@@ -177,17 +177,14 @@ public abstract class Persona implements Prestamista {
                 this.vehiculos.remove(i);
         }
     }
-
     public void comprarBicicleta(double precio) {
         dinero -= precio;
         vehiculos.add(new Bicicleta());
     }
-
     public void construirAutomovil(double precio) {
         vehiculos.add(new Automovil());
         dinero -= precio;
     }
-
     @Override
     public void pagarPrestamo(int prestamista, double abono) {
         ArrayList<Prestamo> prestamosCopy = getPrestamos();
@@ -200,19 +197,14 @@ public abstract class Persona implements Prestamista {
             }
         }
     }
-
     @Override
     public void solicitarPrestamo(int prestamista, double total) {
         this.prestamos.add(new Prestamo(prestamista, this.getId(), total, total, true));
         this.dinero += total;
     }
-
-    @Override
     public void prestarDinero(double total) {
         dinero -= total;
     }
-
-    @Override
     public void recibirPagoPrestamo(double abono) {
         dinero += abono;
     }

@@ -13,6 +13,7 @@ public class InterfazJuego extends Interfaz{
     public void imprimirEstadisticas(){
         System.out.println("Nombre del mundo: " + super.getJuego().getNombreMundo());
         System.out.println("Cantidad arboles: " + super.getJuego().getArboles());
+        System.out.println(super.getJuego().imprimirGobierno());
 
         if(super.getJuego().getDoctores().size() > 0){
             System.out.print("\n");

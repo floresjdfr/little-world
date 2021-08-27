@@ -51,6 +51,9 @@ public class Juego {
     public void pagarPrestamo(int idPrestamista, String pagadora, double pago){
         adminMundo.pagarPrestamo(idPrestamista, pagadora, pago);
     }
+    public String imprimirGobierno(){
+        return adminMundo.imprimirGobierno();
+    }
 
     //Doctores
     public void crearDoctor(int id, String nombre, String apellidos, String especialidad){
