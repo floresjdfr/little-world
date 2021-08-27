@@ -8,17 +8,16 @@ import java.util.ArrayList;
 public class Herrero extends Persona {
 
 
-    public Herrero(int id, String nombre, String apellidos, double dinero, double salario, int casas, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos) {
-        super(id, nombre, apellidos, dinero, salario, casas, vehiculos, prestamos);
+    public Herrero(int id, String nombre, String apellidos, double dinero, int casas, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos) {
+        super(id, nombre, apellidos, dinero, casas, vehiculos, prestamos);
     }
     @Override
-    public void ganarDinero() {
-        super.setDinero(super.getDinero() + super.getSalario());
-        this.perderDinero();
+    public void ganarDinero(double cantidad) {
+        super.setDinero(super.getDinero() + cantidad);
     }
     @Override
-    public void perderDinero() {
-        super.setDinero(super.getDinero() - 1);
+    public void perderDinero(double cantidad) {
+        super.setDinero(super.getDinero() - cantidad);
     }
 
     public void construirBicicleta(double precio){

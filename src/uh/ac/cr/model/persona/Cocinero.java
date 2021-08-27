@@ -2,6 +2,7 @@ package uh.ac.cr.model.persona;
 
 
 import uh.ac.cr.model.prestamo.Prestamo;
+import uh.ac.cr.model.vehiculo.Automovil;
 import uh.ac.cr.model.vehiculo.Vehiculo;
 
 import java.util.ArrayList;
@@ -10,9 +11,9 @@ public class Cocinero extends Persona {
 
     private ArrayList<String> recetas;
 
-    public Cocinero(int id, String nombre, String apellidos, double dinero, double salario, int casas, ArrayList<Vehiculo>
+    public Cocinero(int id, String nombre, String apellidos, double dinero, int casas, ArrayList<Vehiculo>
             vehiculos, ArrayList<Prestamo> prestamos, ArrayList<String> recetas) {
-        super(id, nombre, apellidos, dinero, salario, casas, vehiculos, prestamos);
+        super(id, nombre, apellidos, dinero, casas, vehiculos, prestamos);
         this.recetas = recetas;
     }
 
@@ -23,12 +24,12 @@ public class Cocinero extends Persona {
         this.recetas = recetas;
     }
     @Override
-    public void ganarDinero() {
-        super.setDinero(super.getDinero() + super.getSalario());
+    public void ganarDinero(double cantidad) {
+        super.setDinero(super.getDinero() + cantidad);
     }
     @Override
-    public void perderDinero() {
-
+    public void perderDinero(double cantidad) {
+        super.setDinero(super.getDinero() - cantidad);
     }
     public void agregarReceta(String nuevaReceta){
         recetas.add(nuevaReceta);
@@ -39,4 +40,5 @@ public class Cocinero extends Persona {
         return super.toString() +
                 "recetas: " + recetas.toString();
     }
+
 }

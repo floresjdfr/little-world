@@ -167,7 +167,18 @@ public class Mundo {
     public void venderBicicleta(Persona h, double precio){
         h.venderBicicleta(precio);
     }
+    public void construirAutomovilDoctor(Doctor p){
+        p.agregarAutomovil();
+    }
+    public void construirAutomovilCarpintero(Carpintero c){
+        c.agregarAutomovil();
+    }
 
+
+    //Gobierno
+    public void pagarAGobierno(double cantidad){
+        this.gobierno.recibirDinero(cantidad);
+    }
 
     //Doctores
     public void crearDoctor(Doctor d) {
@@ -186,8 +197,8 @@ public class Mundo {
     public void crearCocinero(Cocinero c){
         listaCocineros.add(c);
     }
-    public void cocineroGanarDinero(Cocinero c){
-        c.ganarDinero();
+    public void cocineroGanarDinero(Cocinero c, double cantidad){
+        c.ganarDinero(cantidad);
     }
     public void cocineroAgregarReceta(Cocinero c, String r){
         c.agregarReceta(r);
@@ -208,8 +219,8 @@ public class Mundo {
     public void crearAlbanil(Albañil a){
         listaAlbaniles.add(a);
     }
-    public void pagarConstruccionAlbanil(Albañil a){
-        a.ganarDinero();
+    public void pagarConstruccionAlbanil(Albañil a, double cantidad){
+        a.ganarDinero(cantidad);
     }
     public Albañil buscarAlbanil(int idAlbanil){
         for (Albañil a: listaAlbaniles){
@@ -223,8 +234,8 @@ public class Mundo {
     public void crearHerrero(Herrero h){
         listaHerreros.add(h);
     }
-    public void pagarConstruccionHerreros(Herrero h){
-        h.ganarDinero();
+    public void pagarConstruccionHerreros(Herrero h, double cantidad){
+        h.ganarDinero(cantidad);
     }
     public Herrero buscarHerrero(int idHerrero){
         for (Herrero h: listaHerreros){
@@ -242,8 +253,8 @@ public class Mundo {
     public void crearCarpintero(Carpintero c){
         listaCarpinteros.add(c);
     }
-    public void pagarConstruccionCarpintero(Carpintero c){
-        c.ganarDinero();
+    public void pagarConstruccionCarpintero(Carpintero c, double cantidad){
+        c.ganarDinero(cantidad);
     }
     public Carpintero buscarCarpintero (int idCarpintero){
         for (Carpintero c: listaCarpinteros){

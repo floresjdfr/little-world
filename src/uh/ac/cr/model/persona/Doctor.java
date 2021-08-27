@@ -1,6 +1,7 @@
 package uh.ac.cr.model.persona;
 
 import uh.ac.cr.model.prestamo.Prestamo;
+import uh.ac.cr.model.vehiculo.Automovil;
 import uh.ac.cr.model.vehiculo.Vehiculo;
 
 import java.util.ArrayList;
@@ -9,8 +10,8 @@ public class Doctor extends Persona {
 
     private String especialidad;
 
-    public Doctor(int id, String nombre, String apellidos, double dinero, double salario, int casas, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos, String especialidad) {
-        super(id, nombre, apellidos, dinero, salario, casas, vehiculos, prestamos);
+    public Doctor(int id, String nombre, String apellidos, double dinero,  int casas, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos, String especialidad) {
+        super(id, nombre, apellidos, dinero, casas, vehiculos, prestamos);
         this.especialidad = especialidad;
     }
 
@@ -24,19 +25,28 @@ public class Doctor extends Persona {
 
 
     @Override
-    public void ganarDinero() {
-        super.setDinero(super.getDinero() + super.getSalario());
+    public void ganarDinero(double cantidad) {
+        super.setDinero(super.getDinero() + cantidad);
     }
-
     @Override
-    public void perderDinero() {
-        super.setDinero(super.getDinero() - 3);
+    public void perderDinero(double cantidad) {
+        super.setDinero(super.getDinero() - cantidad);
     }
 
     @Override
     public String toString() {
         return super.toString() +
                 "Especialidad: " + especialidad + '\n';
+    }
+
+    public void construirAutomovil(double costo){
+        /**
+         * Reduce el dinero disponible, ya que debe pagar para construir un automovil
+         */
+        super.setDinero(super.getDinero() - costo);
+    }
+    public void agregarAutomovil(){
+        super.getVehiculos().add(new Automovil());
     }
 
 

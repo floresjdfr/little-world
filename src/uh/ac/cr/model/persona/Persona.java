@@ -14,19 +14,17 @@ public abstract class Persona implements Prestamista {
     private String nombre;
     private String apellidos;
     private double dinero;
-    private double salario;
     private int casas;
     private ArrayList<Vehiculo> vehiculos;
     private ArrayList<Prestamo> prestamos;
     private Boolean permisoConducirBicicleta;
 
 
-    public Persona(int id, String nombre, String apellidos, double dinero, double salario, int casas, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos) {
+    public Persona(int id, String nombre, String apellidos, double dinero, int casas, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos) {
         Id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.dinero = 10;
-        this.salario = salario;
+        this.dinero = 50;
         this.casas = casas;
         this.vehiculos = vehiculos;
         this.prestamos = prestamos;
@@ -65,14 +63,6 @@ public abstract class Persona implements Prestamista {
         this.dinero = dinero;
     }
 
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        this.salario = salario;
-    }
-
     public int getCasas() {
         return casas;
     }
@@ -105,9 +95,9 @@ public abstract class Persona implements Prestamista {
         this.permisoConducirBicicleta = permisoConducirBicicleta;
     }
 
-    public abstract void ganarDinero();
+    public abstract void ganarDinero(double cantidad);
 
-    public abstract void perderDinero();
+    public abstract void perderDinero(double cantidad);
 
     @Override
     public String toString() {
@@ -115,7 +105,6 @@ public abstract class Persona implements Prestamista {
                 "Nombre: " + nombre + '\n' +
                 "Apellidos: " + apellidos + '\n' +
                 "Dinero: " + dinero + '\n' +
-                "Salario: " + salario + '\n' +
                 "Casas: " + casas + '\n' +
                 "Automoviles: " + this.getCantidadAutomoviles() + '\n' +
                 "Bicicletas: " + this.getCantidadBicicletas() + '\n' +

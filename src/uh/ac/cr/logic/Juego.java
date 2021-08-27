@@ -70,9 +70,6 @@ public class Juego {
     public void crearCocinero(int id, String nombre, String apellidos, String recetas){
         adminCocinero.crearCocinero(id, nombre, apellidos, recetas);
     }
-    public void ganarDinero(){
-        adminCocinero.ganarDinero();
-    }
     public void agregarReceta(String receta){
         adminCocinero.agregarReceta(receta);
     }

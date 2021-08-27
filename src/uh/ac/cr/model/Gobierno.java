@@ -32,6 +32,9 @@ public class Gobierno implements Prestamista {
     public void sembrarArbol(){
         this.capitalEconomico -= 0.5;
     }
+    public void recibirDinero(double cantidad){
+        capitalEconomico += cantidad;
+    }
     @Override
     public void solicitarPrestamo(int idPrestamista, double total) {
         this.prestamos.add(new Prestamo(idPrestamista, -1, total, total, true));
@@ -47,7 +50,6 @@ public class Gobierno implements Prestamista {
                     this.prestamos.remove(i);
             }
         }
-
     }
     String prestamosToString() {
         if (this.prestamos.size() > 0) {

@@ -18,7 +18,7 @@ public class AdministrarCocinero extends Administrador {
 
         String[] arrRecetas = recetas.toLowerCase(Locale.ROOT).split(",");
         ArrayList<String> listaRecetas = new ArrayList<>(Arrays.asList(arrRecetas));
-        super.getMundo().crearCocinero(new Cocinero(id, nombre, apellidos, 0, 0.5, 0,
+        super.getMundo().crearCocinero(new Cocinero(id, nombre, apellidos, 0, 0,
                 new ArrayList<>(), new ArrayList<>(), listaRecetas));
 
         super.getMundo().aumentarContadorCreacion();
@@ -31,12 +31,7 @@ public class AdministrarCocinero extends Administrador {
     public ArrayList<Cocinero> getCocineros(){
         return super.getMundo().getListaCocineros();
     }
-    public void ganarDinero(){
-        Random rand = new Random();
-        int cocineroRandom = rand.nextInt(super.getMundo().getListaCocineros().size());//Se elije un cocinero random de la lista
-        Cocinero c = super.getMundo().getListaCocineros().get(cocineroRandom);
-        super.getMundo().cocineroGanarDinero(c);
-    }
+
     public void agregarReceta(String receta){
 
         //Verificar que receta no existe

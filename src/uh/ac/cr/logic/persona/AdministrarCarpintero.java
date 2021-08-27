@@ -24,7 +24,7 @@ public class AdministrarCarpintero extends Administrador {
             }
 
             if (cantDoc >= cantCarp) {
-                super.getMundo().crearCarpintero(new Carpintero(id, nombre, apellidos, 0, 4, 0,
+                super.getMundo().crearCarpintero(new Carpintero(id, nombre, apellidos, 4, 0,
                         new ArrayList<>(), new ArrayList<>()));
                 super.getMundo().aumentarContadorCreacion();
 

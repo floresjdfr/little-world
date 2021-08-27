@@ -24,7 +24,7 @@ public class AdministarHerrero extends Administrador {
             }
 
             if (cantDoc >= cantHerr * 0.5) {
-                super.getMundo().crearHerrero(new Herrero(id, nombre, apellidos, 3, 3, 0,
+                super.getMundo().crearHerrero(new Herrero(id, nombre, apellidos, 3, 3,
                         new ArrayList<>(), new ArrayList<>()));
 
                 super.getMundo().aumentarContadorCreacion();

@@ -47,11 +47,11 @@ public class AdministrarMundo extends Administrador {
 
         if (cumpleRequisitosParaConstruirCasa(p)) {
 
-            double salarioCarpintero = super.getMundo().getListaCarpinteros().get(0).getSalario();
-            double salarioAlbanil = super.getMundo().getListaAlbaniles().get(0).getSalario();
-            double salarioHerrero = super.getMundo().getListaHerreros().get(0).getSalario();
+            double salarioCarpintero = 4;
+            double salarioAlbanil = 2;
+            double salarioHerrero = 3;
             double impuesto = 10;
-            double dineroNecesario = salarioHerrero + salarioAlbanil + salarioCarpintero + impuesto;
+            double dineroNecesario = salarioCarpintero * 2 + salarioAlbanil * 3 + salarioHerrero + impuesto;
 
             pagarConstruccionEmpleados();
             p.construirCasa(dineroNecesario);
@@ -67,25 +67,14 @@ public class AdministrarMundo extends Administrador {
         int cantAlbaniles = super.getMundo().getListaAlbaniles().size();
         int cantHerrero = super.getMundo().getListaHerreros().size();
 
-        double salarioCarpintero;
-        double salarioAlbanil;
-        double salarioHerrero;
+        double salarioCarpintero = 4;
+        double salarioAlbanil = 2;
+        double salarioHerrero = 3;
         double impuesto = 10;
-
-        try {
-            //En caso que algunas de las listas no tenga ninguna persona, hay una excepcion
-            salarioCarpintero = super.getMundo().getListaCarpinteros().get(0).getSalario();
-            salarioAlbanil = super.getMundo().getListaAlbaniles().get(0).getSalario();
-            salarioHerrero = super.getMundo().getListaHerreros().get(0).getSalario();
-
-        } catch (Exception ex) {
-            System.out.println("Deben existir 2 carpinteros, 3 albañiles y 1 hererro para construir la casa");
-            return false;
-        }
 
         if (cantCarpinteros >= 2 && cantAlbaniles >= 3 && cantHerrero >= 1) {
 
-            double dineroNecesario = salarioCarpintero + salarioAlbanil + salarioHerrero + impuesto;
+            double dineroNecesario = salarioCarpintero * 2 + salarioAlbanil * 3 + salarioHerrero + impuesto;
 
             if (p.getDinero() >= dineroNecesario) {
                 return true;
@@ -99,27 +88,33 @@ public class AdministrarMundo extends Administrador {
     }
 
     public void pagarConstruccionEmpleados() {
-        pagarContruccionAbanil();
-        pagarContruccionCarpintero();
-        pagarContruccionHerrero();
+
+        //Se ocupa pagar a 3 albañiles random
+        for (int i = 0; i < 3; i++)
+            pagarContruccionAbanil(2);
+        //Se ocupa pagar a 2 carpinteros random
+        for (int i = 0; i < 2; i++)
+            pagarContruccionCarpintero(4);
+        pagarContruccionHerrero(3);
+        this.getMundo().pagarAGobierno(10);
     }
 
-    public void pagarContruccionAbanil() {
+    public void pagarContruccionAbanil(double cantidad) {
         Random rand = new Random();
         int albanilRand = rand.nextInt(super.getMundo().getListaAlbaniles().size());
-        super.getMundo().pagarConstruccionAlbanil(super.getMundo().getListaAlbaniles().get(albanilRand));
+        super.getMundo().pagarConstruccionAlbanil(super.getMundo().getListaAlbaniles().get(albanilRand), cantidad);
     }
 
-    public void pagarContruccionHerrero() {
+    public void pagarContruccionHerrero(double cantidad) {
         Random rand = new Random();
         int herreroRand = rand.nextInt(super.getMundo().getListaHerreros().size());
-        super.getMundo().pagarConstruccionHerreros(super.getMundo().getListaHerreros().get(herreroRand));
+        super.getMundo().pagarConstruccionHerreros(super.getMundo().getListaHerreros().get(herreroRand), cantidad);
     }
 
-    public void pagarContruccionCarpintero() {
+    public void pagarContruccionCarpintero(double cantidad) {
         Random rand = new Random();
         int carpinteroRand = rand.nextInt(super.getMundo().getListaCarpinteros().size());
-        super.getMundo().pagarConstruccionCarpintero(super.getMundo().getListaCarpinteros().get(carpinteroRand));
+        super.getMundo().pagarConstruccionCarpintero(super.getMundo().getListaCarpinteros().get(carpinteroRand), cantidad);
     }
 
     public Persona buscarPersona(int idPersona) {

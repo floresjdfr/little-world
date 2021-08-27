@@ -26,7 +26,7 @@ public class AdministrarAlbañil extends Administrador {
             }
 
             if (cantDoc >= cantAlb * 0.5 && cantCoc >= cantAlb * 0.5) {
-                super.getMundo().crearAlbanil(new Albañil(id, nombre, apellidos, 0, 2, 0, new ArrayList<>(),
+                super.getMundo().crearAlbanil(new Albañil(id, nombre, apellidos, 2, 0, new ArrayList<>(),
                         new ArrayList<>()));
                 super.getMundo().aumentarContadorCreacion();
 

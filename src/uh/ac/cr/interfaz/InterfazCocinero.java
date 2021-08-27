@@ -38,9 +38,6 @@ public class InterfazCocinero extends Interfaz{
         super.getJuego().crearCocinero(id, nombre, apellidos, recetas);
 
     }
-    public void ganarDinero(){
-        super.getJuego().ganarDinero();
-    }
     public void agregarReceta(){
         Scanner input = new Scanner(System.in);
         String receta;

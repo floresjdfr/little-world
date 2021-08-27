@@ -19,7 +19,7 @@ public class AdministrarDoctor extends Administrador {
 
     public void crearDoctor(int id, String nombre, String apellidos, String especialidad) {
 
-        Doctor nuevoDoctor = new Doctor(id, nombre, apellidos, 0, 5, 0, new ArrayList<>(), new ArrayList<>(), especialidad);
+        Doctor nuevoDoctor = new Doctor(id, nombre, apellidos, 0, 0, new ArrayList<>(), new ArrayList<>(), especialidad);
         super.getMundo().crearDoctor(nuevoDoctor);
 
         super.getMundo().aumentarContadorCreacion();
@@ -28,14 +28,6 @@ public class AdministrarDoctor extends Administrador {
             super.getMundo().darDineroATodos(1);
             super.getMundo().resetCotnadorCreacion();
         }
-    }
-
-    public void ganarDinero() {
-        Random rand = new Random();
-        int doctorRandom = rand.nextInt(super.getMundo().getListaDoctores().size());//Se elije un doctor random de la lista
-
-        Doctor doc = super.getMundo().getListaDoctores().get(doctorRandom); //Se obtiene el doctor random de la lista de doctores
-        doc.ganarDinero();
     }
 }
 
