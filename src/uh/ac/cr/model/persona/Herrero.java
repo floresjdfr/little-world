@@ -1,6 +1,6 @@
 package uh.ac.cr.model.persona;
 
-import uh.ac.cr.model.Prestamo;
+import uh.ac.cr.model.prestamo.Prestamo;
 import uh.ac.cr.model.vehiculo.Bicicleta;
 import uh.ac.cr.model.vehiculo.Vehiculo;
 

@@ -1,30 +1,31 @@
-package uh.ac.cr.model;
+package uh.ac.cr.model.prestamo;
 
 public class Prestamo {
-    private int prestamista;
-    private int interesado;
+
+    private int idPrestamista;
+    private int idInteresado;
     private double totalPrestamo;
     private double pendientePago;
     private Boolean estado;
 
     public Prestamo(int prestamista, int interesado, double totalPrestamo, double pendientePago, Boolean estado) {
-        this.prestamista = prestamista;
-        this.interesado = interesado;
+        this.idPrestamista = prestamista;
+        this.idInteresado = interesado;
         this.totalPrestamo = totalPrestamo;
         this.pendientePago = pendientePago;
         this.estado = estado;
     }
-    public Object getPrestamista() {
-        return prestamista;
+    public int getIdPrestamista() {
+        return idPrestamista;
     }
-    public void setPrestamista(int prestamista) {
-        this.prestamista = prestamista;
+    public void setIdPrestamista(int idPrestamista) {
+        this.idPrestamista = idPrestamista;
     }
-    public Object getInteresado() {
-        return interesado;
+    public int getIdInteresado() {
+        return idInteresado;
     }
-    public void setInteresado(int interesado) {
-        this.interesado = interesado;
+    public void setIdInteresado(int idInteresado) {
+        this.idInteresado = idInteresado;
     }
     public double getTotalPrestamo() {
         return totalPrestamo;
@@ -44,6 +45,7 @@ public class Prestamo {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+
 
     public void abonar(double nuevoAbono){
         this.pendientePago -= nuevoAbono;

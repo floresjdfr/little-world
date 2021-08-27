@@ -2,14 +2,10 @@ package uh.ac.cr.logic.persona;
 
 import uh.ac.cr.logic.Administrador;
 import uh.ac.cr.model.Mundo;
-import uh.ac.cr.model.Prestamo;
 import uh.ac.cr.model.persona.Doctor;
-import uh.ac.cr.model.persona.Persona;
-import uh.ac.cr.model.vehiculo.Vehiculo;
 
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 public class AdministrarDoctor extends Administrador {
 

@@ -11,7 +11,6 @@ public class InterfazJuego extends Interfaz{
     }
 
     public void imprimirEstadisticas(){
-        System.out.println("Estadisticas:");
         System.out.println("Nombre del mundo: " + super.getJuego().getNombreMundo());
         System.out.println("Cantidad arboles: " + super.getJuego().getArboles());
 
@@ -96,7 +95,6 @@ public class InterfazJuego extends Interfaz{
 
         super.getJuego().construirBicicleta(idHerreroConstructor);
     }
-
     public void comprarBicicleta(){
 
         Scanner input = new Scanner(System.in);
@@ -113,5 +111,41 @@ public class InterfazJuego extends Interfaz{
         input.nextLine();
 
         super.getJuego().comprarBicicleta(idComprador, idVendedor);
+    }
+    public void solicitarPrestamo(){
+        Scanner input = new Scanner(System.in);
+
+        String interesado;
+        int idPrestamista;
+        double cantidadPrestamo;
+
+        System.out.print("Identificacion del prestamista: ");
+        idPrestamista = input.nextInt();
+        input.nextLine();
+        System.out.print("Identificacion del interesado, en caso de ser el gobierno escriba 'Gobierno': ");
+        interesado = input.nextLine();
+        System.out.print("Cantidad de dinero a solicitar: ");
+        cantidadPrestamo = input.nextDouble();
+        input.nextLine();
+
+        super.getJuego().solicitarPrestamo(idPrestamista, interesado, cantidadPrestamo);
+    }
+    public void pagarPrestamo(){
+        Scanner input = new Scanner(System.in);
+
+        int idPrestamista;
+        String idPagador;
+        double cantidadAPagar;
+
+        System.out.print("Identificacion del prestamista: ");
+        idPrestamista = input.nextInt();
+        input.nextLine();
+        System.out.print("Identificacion del pagador, en caso de ser el gobierno escriba 'Gobierno': ");
+        idPagador = input.nextLine();
+        System.out.print("Cantidad a pagar: ");
+        cantidadAPagar = input.nextDouble();
+        input.nextLine();
+
+        super.getJuego().pagarPrestamo(idPrestamista, idPagador, cantidadAPagar);
     }
 }

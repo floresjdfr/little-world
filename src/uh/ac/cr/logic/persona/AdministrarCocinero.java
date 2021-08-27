@@ -1,14 +1,9 @@
 package uh.ac.cr.logic.persona;
 
-import jdk.jshell.spi.ExecutionControl;
 import uh.ac.cr.logic.Administrador;
 import uh.ac.cr.model.Mundo;
-import uh.ac.cr.model.Prestamo;
 import uh.ac.cr.model.persona.Cocinero;
-import uh.ac.cr.model.persona.Persona;
-import uh.ac.cr.model.vehiculo.Vehiculo;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;

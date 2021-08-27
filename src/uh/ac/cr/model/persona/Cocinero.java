@@ -1,11 +1,10 @@
 package uh.ac.cr.model.persona;
 
 
-import uh.ac.cr.model.Prestamo;
+import uh.ac.cr.model.prestamo.Prestamo;
 import uh.ac.cr.model.vehiculo.Vehiculo;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Cocinero extends Persona {
 

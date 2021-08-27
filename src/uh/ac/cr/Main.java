@@ -172,6 +172,22 @@ public class Main {
                     interfazJuego.comprarBicicleta();
                     break;
                 }
+                case "Solicitar prestamo":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazJuego.solicitarPrestamo();
+                    break;
+                }
+                case "Pagar prestamo":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazJuego.pagarPrestamo();
+                    break;
+                }
                 case "Imprimir estadisticas":{
                     interfazJuego.imprimirEstadisticas();
                     break;

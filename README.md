@@ -2,6 +2,8 @@
 
 #### Nota: Las personas actualmente se crean con $10 para realizar pruebas
 
+#### Nota 2: Aun faltan validaciones tomando en cuanta las operaciones que se realizan en el mundo.
+
 'Salir'
 
 'Comenzar nuevo mundo'
@@ -24,4 +26,9 @@
 
 'Construir bicicleta'
 
+'Comprar bicicleta'
+
+'Solicitar prestamo'
+
+'Pagar prestamo'
 'Comprar bicicleta'

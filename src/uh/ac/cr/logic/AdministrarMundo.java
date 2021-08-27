@@ -1,44 +1,51 @@
 package uh.ac.cr.logic;
+
 import uh.ac.cr.logic.AdministradorArchivo;
 import uh.ac.cr.model.*;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 import uh.ac.cr.model.persona.*;
 
-public class AdministrarMundo extends Administrador{
+public class AdministrarMundo extends Administrador {
     public AdministrarMundo(Mundo mundo) {
         super(mundo);
     }
-    public String getNombreMundo(){
+
+    public String getNombreMundo() {
         return super.getMundo().getName();
     }
-    public int getArboles(){
+
+    public int getArboles() {
         return super.getMundo().getArboles();
     }
-    public Boolean sembrarArbol(){
-        if(super.getMundo().getGobierno().getCapitalEconomico() > 0.5){//Verifica que el gobierna tenga capital para pagar el arbol
+
+    public Boolean sembrarArbol() {
+        if (super.getMundo().getGobierno().getCapitalEconomico() > 0.5) {//Verifica que el gobierna tenga capital para pagar el arbol
             super.getMundo().sembrarArbol();
             return true;
         }
         return false;
     }
-    public Boolean construirCasa(int idPersona){
+
+    public Boolean construirCasa(int idPersona) {
         Persona p = null;
 
-        try{
+        try {
             p = this.buscarPersona(idPersona);
             if (p == null)
                 throw new Exception("Persona no existe");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Persona con esa identificacion no existe");
             return false;
         }
 
-        if (cumpleRequisitosParaConstruirCasa(p)){
+        if (cumpleRequisitosParaConstruirCasa(p)) {
 
             double salarioCarpintero = super.getMundo().getListaCarpinteros().get(0).getSalario();
             double salarioAlbanil = super.getMundo().getListaAlbaniles().get(0).getSalario();
@@ -53,7 +60,8 @@ public class AdministrarMundo extends Administrador{
         }
         return false;
     }
-    public Boolean cumpleRequisitosParaConstruirCasa (Persona p){
+
+    public Boolean cumpleRequisitosParaConstruirCasa(Persona p) {
 
         int cantCarpinteros = super.getMundo().getListaCarpinteros().size();
         int cantAlbaniles = super.getMundo().getListaAlbaniles().size();
@@ -64,23 +72,22 @@ public class AdministrarMundo extends Administrador{
         double salarioHerrero;
         double impuesto = 10;
 
-        try{
+        try {
             //En caso que algunas de las listas no tenga ninguna persona, hay una excepcion
             salarioCarpintero = super.getMundo().getListaCarpinteros().get(0).getSalario();
             salarioAlbanil = super.getMundo().getListaAlbaniles().get(0).getSalario();
             salarioHerrero = super.getMundo().getListaHerreros().get(0).getSalario();
 
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Deben existir 2 carpinteros, 3 albañiles y 1 hererro para construir la casa");
             return false;
         }
 
-        if (cantCarpinteros >= 2 && cantAlbaniles >= 3 && cantHerrero >= 1){
+        if (cantCarpinteros >= 2 && cantAlbaniles >= 3 && cantHerrero >= 1) {
 
             double dineroNecesario = salarioCarpintero + salarioAlbanil + salarioHerrero + impuesto;
 
-            if (p.getDinero() >= dineroNecesario){
+            if (p.getDinero() >= dineroNecesario) {
                 return true;
             }
 
@@ -91,27 +98,96 @@ public class AdministrarMundo extends Administrador{
         return false;
     }
 
-    public void pagarConstruccionEmpleados(){
+    public void pagarConstruccionEmpleados() {
         pagarContruccionAbanil();
         pagarContruccionCarpintero();
         pagarContruccionHerrero();
     }
-    public void pagarContruccionAbanil(){
+
+    public void pagarContruccionAbanil() {
         Random rand = new Random();
         int albanilRand = rand.nextInt(super.getMundo().getListaAlbaniles().size());
         super.getMundo().pagarConstruccionAlbanil(super.getMundo().getListaAlbaniles().get(albanilRand));
     }
-    public void pagarContruccionHerrero(){
+
+    public void pagarContruccionHerrero() {
         Random rand = new Random();
         int herreroRand = rand.nextInt(super.getMundo().getListaHerreros().size());
         super.getMundo().pagarConstruccionHerreros(super.getMundo().getListaHerreros().get(herreroRand));
     }
-    public void pagarContruccionCarpintero(){
+
+    public void pagarContruccionCarpintero() {
         Random rand = new Random();
         int carpinteroRand = rand.nextInt(super.getMundo().getListaCarpinteros().size());
         super.getMundo().pagarConstruccionCarpintero(super.getMundo().getListaCarpinteros().get(carpinteroRand));
     }
-    public Persona buscarPersona(int idPersona){
+
+    public Persona buscarPersona(int idPersona) {
         return super.getMundo().buscarPersona(idPersona);
     }
+
+    public Boolean solicitarPrestamo(int idPrestamista, String interesado, double totalPrestamo) {
+
+        if (interesado.toLowerCase(Locale.ROOT).equals("gobierno")) {
+            //prestamo gobierno
+            return true;
+        }
+
+        int idInteresado;
+
+        try {
+            idInteresado = Integer.parseInt(interesado);
+        } catch (Exception ex) {
+            System.out.println("Identificacion del interesado no valida");
+            return false;
+        }
+
+        Persona personaInteresada = this.buscarPersona(idInteresado);
+        Persona personaPrestamista = this.buscarPersona(idPrestamista);
+
+        if (personaInteresada != null && personaPrestamista != null) {
+            if (personaPrestamista.getDinero() >= totalPrestamo) {
+                personaInteresada.solicitarPrestamo(idPrestamista, totalPrestamo);
+                personaPrestamista.prestarDinero(totalPrestamo);
+                return true;
+            }
+            System.out.println("Persona prestamista no dispone de dinero suficiente");
+            return false;
+        }
+
+        System.out.println("Persona interesada o prestamista no existe");
+        return false;
+    }
+
+    public Boolean pagarPrestamo(int idPrestamista, String idPagador, double cantidadAPagar){
+
+        int idPagadorInt;
+
+        if (idPagador.toLowerCase(Locale.ROOT).equals("gobierno")){
+            return true;
+        }
+        try{
+            idPagadorInt = Integer.parseInt(idPagador);
+        }
+        catch (Exception ex){
+            System.out.println("Identificacion del pagador no valida");
+            return false;
+        }
+
+        Persona personaPagadora = this.buscarPersona(idPagadorInt);
+        Persona personaPrestamista = this.buscarPersona(idPrestamista);
+
+        if (personaPagadora != null && personaPrestamista != null) {
+            if (personaPagadora.getDinero() >= cantidadAPagar) {
+                personaPagadora.pagarPrestamo(idPrestamista, cantidadAPagar);
+                personaPrestamista.recibirPagoPrestamo(cantidadAPagar);
+                return true;
+            }
+            System.out.println("Persona pagadora no dispone de dinero suficiente");
+            return false;
+        }
+        System.out.println("Persona pagadora o prestamista no existe");
+        return false;
+    }
+
 }

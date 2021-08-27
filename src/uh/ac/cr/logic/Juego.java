@@ -45,6 +45,12 @@ public class Juego {
     public void comprarBicicleta(int idComprador, int idVendedor){
         adminVehiculo.comprarBicicleta(idComprador, idVendedor);
     }
+    public void solicitarPrestamo(int idPrestamista, String interesado, double totalPrestamo){
+        adminMundo.solicitarPrestamo(idPrestamista, interesado, totalPrestamo);
+    }
+    public void pagarPrestamo(int idPrestamista, String pagadora, double pago){
+        adminMundo.pagarPrestamo(idPrestamista, pagadora, pago);
+    }
 
     //Doctores
     public void crearDoctor(int id, String nombre, String apellidos, String especialidad){
