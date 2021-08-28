@@ -40,7 +40,7 @@ public abstract class Persona implements Prestamista {
         Id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.dinero = 50;
+        this.dinero = dinero;
         this.casas = casas;
         this.vehiculos = vehiculos;
         this.prestamos = prestamos;
