@@ -1,5 +1,6 @@
 package uh.ac.cr.model;
 
+import uh.ac.cr.model.persona.Doctor;
 import uh.ac.cr.model.prestamo.Prestamista;
 import uh.ac.cr.model.prestamo.Prestamo;
 
@@ -18,9 +19,11 @@ public class Gobierno implements Prestamista {
     public String toFile(){
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(capitalEconomico  + "\n");
+        stringBuilder.append("<prestamos>\n");
         for (Prestamo p: prestamos){
             stringBuilder.append(p.toFile());
         }
+        stringBuilder.append("<prestamos>\n");
         return stringBuilder.toString();
     }
 

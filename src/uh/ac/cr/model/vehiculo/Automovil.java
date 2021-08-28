@@ -16,10 +16,11 @@ public class Automovil extends Vehiculo {
     @Override
     public String toFile() {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<automovil>\n");
         stringBuilder.append(super.getNumeroLlantas() + "\n");
         stringBuilder.append(super.getNombre() + "\n");
         stringBuilder.append(puedeGanarInteres + "\n");
-        stringBuilder.append("/Automovil\n");
+        stringBuilder.append("<automovil>\n");
         return stringBuilder.toString();
     }
 

@@ -13,6 +13,7 @@ public class Juego {
     private AdministrarCreacionPersona adminCreacionPersonas;
     private AdministrarMundo adminMundo;
     private AdministrarVehiculo adminVehiculo;
+    private AdministradorArchivo adminArchivo;
 
     public Juego(Mundo mundo) {
 
@@ -20,6 +21,7 @@ public class Juego {
         this.adminCreacionPersonas = new AdministrarCreacionPersona(mundo);
         this.adminMundo = new AdministrarMundo(mundo);
         this.adminVehiculo = new AdministrarVehiculo(mundo);
+        this.adminArchivo = new AdministradorArchivo(mundo);
     }
 
     //Personas
@@ -130,6 +132,14 @@ public class Juego {
     //Carpinteros
     public Boolean crearCarpintero(int id, String nombre, String apellidos, Boolean salir) {
         return adminCreacionPersonas.crearCarpintero(id, nombre, apellidos, salir);
+    }
+
+    //Archivos
+    public void guardarMundo(String nombre){
+        adminArchivo.saveFile(nombre);
+    }
+    public Mundo recuperarMundo(String nombre){
+        return adminArchivo.readFile(nombre);
     }
 
 

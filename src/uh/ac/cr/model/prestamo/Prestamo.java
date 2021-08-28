@@ -54,12 +54,13 @@ public class Prestamo {
     }
     public String toFile(){
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<prestamo>\n");
         stringBuilder.append(idPrestamista  + "\n");
         stringBuilder.append(idInteresado  + "\n");
         stringBuilder.append(totalPrestamo  + "\n");
         stringBuilder.append(pendientePago  + "\n");
         stringBuilder.append(estado  + "\n");
-        stringBuilder.append("/Prestamo\n");
+        stringBuilder.append("<prestamo>\n");
         return stringBuilder.toString();
     }
 }

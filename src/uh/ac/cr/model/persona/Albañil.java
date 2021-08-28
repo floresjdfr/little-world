@@ -20,6 +20,7 @@ public class Albañil extends Persona {
     @Override
     public String toFile() {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<albañil>\n");
         stringBuilder.append(super.getId() + "\n");
         stringBuilder.append(super.getNombre() + "\n");
         stringBuilder.append(super.getApellidos() + "\n");
@@ -28,13 +29,17 @@ public class Albañil extends Persona {
         stringBuilder.append(super.getPersonaSaludable() + "\n");
         stringBuilder.append(super.getContadorOperaciones5() + "\n");
         stringBuilder.append(super.getContadorOperaciones10() + "\n");
+        stringBuilder.append("<vehiculos>\n");
         for (Vehiculo v: super.getVehiculos()){
-            v.toFile();
+            stringBuilder.append(v.toFile());
         }
+        stringBuilder.append("<vehiculos>\n");
+        stringBuilder.append("<prestamos>\n");
         for (Prestamo p: super.getPrestamos()){
-            p.toFile();
+            stringBuilder.append(p.toFile());
         }
-        stringBuilder.append("/Albañil\n");
+        stringBuilder.append("<prestamos>\n");
+        stringBuilder.append("<albañil>\n");
         return stringBuilder.toString();
     }
 

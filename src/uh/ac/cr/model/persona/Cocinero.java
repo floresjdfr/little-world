@@ -23,6 +23,37 @@ public class Cocinero extends Persona {
         this.recetas = recetas;
     }
 
+    @Override
+    public String toFile() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<cocinero>\n");
+        stringBuilder.append(super.getId() + "\n");
+        stringBuilder.append(super.getNombre() + "\n");
+        stringBuilder.append(super.getApellidos() + "\n");
+        stringBuilder.append(super.getDinero() + "\n");
+        stringBuilder.append(super.getCasas() + "\n");
+        stringBuilder.append(super.getPersonaSaludable() + "\n");
+        stringBuilder.append(super.getContadorOperaciones5() + "\n");
+        stringBuilder.append(super.getContadorOperaciones10() + "\n");
+        stringBuilder.append("<vehiculos>\n");
+        for (Vehiculo v: super.getVehiculos()){
+            stringBuilder.append(v.toFile());
+        }
+        stringBuilder.append("<vehiculos>\n");
+        stringBuilder.append("<prestamos>\n");
+        for (Prestamo p: super.getPrestamos()){
+            stringBuilder.append(p.toFile());
+        }
+        stringBuilder.append("<prestamos>\n");
+        String recetas2 = "";
+        for (String s: recetas){
+            recetas2 += s + ",";
+        }
+        stringBuilder.append(recetas2 + "\n");
+        stringBuilder.append("<cocinero>\n");
+        return stringBuilder.toString();
+    }
+
     public ArrayList<String> getRecetas() {
         return recetas;
     }

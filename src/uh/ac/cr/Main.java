@@ -5,6 +5,8 @@ import uh.ac.cr.logic.Juego;
 import uh.ac.cr.model.Mundo;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -158,6 +160,10 @@ public class Main {
                     break;
                 }
                 case "Imprimir estadisticas": {
+                    if (mundo == null) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
                     interfazJuego.imprimirEstadisticas();
                     break;
                 }
@@ -165,9 +171,34 @@ public class Main {
                     InterfazJuego.ayuda();
                     break;
                 }
-                default: {
-                    System.out.println("Comando no reconocido.");
+                case "Guardar mundo": {
+                    if (mundo == null) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazJuego.guardarMundo();
                     break;
+                }
+                default: {
+                    Pattern p = Pattern.compile("Comenzar\smundo\s\\w+");
+                    Matcher m = p.matcher(opcion);
+                    if (m.matches()){
+                        juego = new Juego(null);
+                        interfazJuego = new InterfazJuego(juego);
+                        mundo = interfazJuego.recuperarMundo(opcion);
+                        if (mundo == null){
+                            System.out.println("Mundo no existe");
+                            break;
+                        }
+                        juego = new Juego(mundo);
+                        interfazJuego = new InterfazJuego(juego);
+                        interfazPersonas = new InterfazPersonas(juego);
+                        break;
+                    }
+                    else{
+                        System.out.println("Comando no reconocido.");
+                        break;
+                    }
                 }
 
 

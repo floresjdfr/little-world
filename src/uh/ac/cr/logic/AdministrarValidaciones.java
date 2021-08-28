@@ -347,8 +347,8 @@ public class AdministrarValidaciones extends Administrador {
 
     public Boolean iniciarOperacionesPersona10(Persona p) {
         if (p.getPrestamos().size() > 0) {
-            if (p.getContadorOperaciones5() == 10) {
-                p.resetearContadorOperaciones5();
+            if (p.getContadorOperaciones10() == 10) {
+                p.resetearContadorOperaciones10();
                 return true;
             }
         }

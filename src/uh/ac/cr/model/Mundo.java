@@ -1,6 +1,8 @@
 package uh.ac.cr.model;
 
 import uh.ac.cr.model.persona.*;
+import uh.ac.cr.model.prestamo.Prestamo;
+import uh.ac.cr.model.vehiculo.Vehiculo;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -25,7 +27,7 @@ public class Mundo {
 
     private int personasMuertas;
 
-    public Mundo (String name, int arboles, int contadorCreacion, int contadorOperaciones5, int contadorOperaciones10, int contadorOperaciones15,
+    public Mundo(String name, int arboles, int contadorCreacion, int contadorOperaciones5, int contadorOperaciones10, int contadorOperaciones15,
                  int contadorOperaciones30, int personasMuertas, Gobierno gobierno, ArrayList<Doctor> listaDoctores, ArrayList<Cocinero> listaCocineros,
                  ArrayList<Albañil> listaAlbaniles, ArrayList<Herrero> listaHerreros, ArrayList<Carpintero> listaCarpinteros) {
         this.name = name;
@@ -42,6 +44,49 @@ public class Mundo {
         this.contadorOperaciones15 = contadorOperaciones15;
         this.contadorOperaciones30 = contadorOperaciones30;
         this.personasMuertas = personasMuertas;
+    }
+
+    public String toFile() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<mundo>\n");
+        stringBuilder.append(name + "\n");
+        stringBuilder.append(arboles + "\n");
+        stringBuilder.append(contadorCreacion + "\n");
+        stringBuilder.append(contadorOperaciones5 + "\n");
+        stringBuilder.append(contadorOperaciones10 + "\n");
+        stringBuilder.append(contadorOperaciones15 + "\n");
+        stringBuilder.append(contadorOperaciones30 + "\n");
+        stringBuilder.append(personasMuertas + "\n");
+        stringBuilder.append("<gobierno>\n");
+        stringBuilder.append(gobierno.toFile());
+        stringBuilder.append("<gobierno>\n");
+        stringBuilder.append("<doctores>\n");
+        for (Doctor d : listaDoctores) {
+            stringBuilder.append(d.toFile());
+        }
+        stringBuilder.append("<doctores>\n");
+        stringBuilder.append("<cocineros>\n");
+        for (Cocinero d : listaCocineros) {
+            stringBuilder.append(d.toFile());
+        }
+        stringBuilder.append("<cocineros>\n");
+        stringBuilder.append("<albañiles>\n");
+        for (Albañil d : listaAlbaniles) {
+            stringBuilder.append(d.toFile());
+        }
+        stringBuilder.append("<albañiles>\n");
+        stringBuilder.append("<herreros>\n");
+        for (Herrero d : listaHerreros) {
+            stringBuilder.append(d.toFile());
+        }
+        stringBuilder.append("<herreros>\n");
+        stringBuilder.append("<carpinteros>\n");
+        for (Carpintero d : listaCarpinteros) {
+            stringBuilder.append(d.toFile());
+        }
+        stringBuilder.append("<carpinteros>\n");
+        stringBuilder.append("<mundo>\n");
+        return stringBuilder.toString();
     }
 
     public Mundo(String nombre) {
@@ -282,6 +327,7 @@ public class Mundo {
 
         return contador;
     }
+
     public int getRandom1and2() {
         Random rand = new Random();
         int numero = rand.nextInt(2);
@@ -293,7 +339,8 @@ public class Mundo {
     public void pagarAGobierno(double cantidad) {
         this.gobierno.recibirDinero(cantidad);
     }
-    public void gobiernoDarDinero(double cantidad){
+
+    public void gobiernoDarDinero(double cantidad) {
         this.gobierno.darDinero(cantidad);
     }
 

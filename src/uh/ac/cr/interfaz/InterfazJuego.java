@@ -1,6 +1,7 @@
 package uh.ac.cr.interfaz;
 
 import uh.ac.cr.logic.Juego;
+import uh.ac.cr.model.Mundo;
 import uh.ac.cr.model.persona.*;
 
 import java.util.Scanner;
@@ -180,7 +181,7 @@ public class InterfazJuego extends Interfaz {
         int idDoctorConstructor;
         int idCarpinteroConstructor;
 
-        System.out.print("Identificacion de carpintero constructor: ");
+        System.out.print("Identificacion de doctor constructor: ");
         String supuestoID;
         supuestoID = input.nextLine();
         idDoctorConstructor = super.getJuego().esIntValido(supuestoID);
@@ -188,7 +189,7 @@ public class InterfazJuego extends Interfaz {
             System.out.println("No puede ingresar caracteres para ese campo, solo numeros");
             return;
         }
-        System.out.print("Identificacion de doctor constructor: ");
+        System.out.print("Identificacion de carpintero constructor: ");
         String supuestoID2;
         supuestoID2 = input.nextLine();
         idCarpinteroConstructor = super.getJuego().esIntValido(supuestoID2);
@@ -285,4 +286,13 @@ public class InterfazJuego extends Interfaz {
 
         super.getJuego().pagarPrestamo(idPrestamista, idPagador, cantidadAPagar, salir);
     }
+
+    public void guardarMundo() {
+        super.getJuego().guardarMundo(super.getJuego().getNombreMundo());
+        System.out.println("Mundo guardado");
+    }
+    public Mundo recuperarMundo(String mundo){
+        return super.getJuego().recuperarMundo(mundo);
+    }
+
 }

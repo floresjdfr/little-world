@@ -17,10 +17,11 @@ public class Bicicleta extends Vehiculo{
     @Override
     public String toFile() {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<bicicleta>\n");
         stringBuilder.append(super.getNumeroLlantas() + "\n");
         stringBuilder.append(super.getNombre() + "\n");
         stringBuilder.append(puedeSerConducida + "\n");
-        stringBuilder.append("/Bicicileta\n");
+        stringBuilder.append("<bicicleta>\n");
         return stringBuilder.toString();
     }
 
