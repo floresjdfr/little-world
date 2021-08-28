@@ -20,15 +20,6 @@ public class Carpintero extends Persona {
     public void perderDinero(double cantidad) {
         super.setDinero(super.getDinero() - cantidad);
     }
-    public void construirAutomovil(double costo){
-        /**
-         * Reduce el dinero disponible, ya que debe pagar para construir un automovil
-         */
-        super.setDinero(super.getDinero() - costo);
-    }
-    public void agregarAutomovil(){
-        super.getVehiculos().add(new Automovil());
-    }
 
 
 }

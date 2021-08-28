@@ -10,98 +10,101 @@ import java.util.ArrayList;
 public class Juego {
 
     private AdministrarMundo adminJuego;
-    private AdministrarDoctor adminDoctor;
-    private AdministrarCocinero adminCocinero;
-    private AdministrarAlbañil adminAlbanil;
-    private AdministarHerrero adminHerrero;
-    private AdministrarCarpintero adminCarpintero;
+    private AdministrarCreacionPersona adminCreacionPersonas;
     private AdministrarMundo adminMundo;
     private AdministrarVehiculo adminVehiculo;
 
     public Juego(Mundo mundo){
+
         this.adminJuego = new AdministrarMundo(mundo);
-        this.adminDoctor = new AdministrarDoctor(mundo);
-        this.adminCocinero = new AdministrarCocinero(mundo);
-        this.adminAlbanil = new AdministrarAlbañil(mundo);
-        this.adminHerrero = new AdministarHerrero(mundo);
-        this.adminCarpintero = new AdministrarCarpintero(mundo);
+        this.adminCreacionPersonas = new AdministrarCreacionPersona(mundo);
         this.adminMundo = new AdministrarMundo(mundo);
         this.adminVehiculo = new AdministrarVehiculo(mundo);
+    }
+
+    //Personas
+    public ArrayList<Doctor> getDoctores(){
+        return adminCreacionPersonas.getDoctores();
+    }
+    public ArrayList<Cocinero> getCocineros(){
+        return adminCreacionPersonas.getCocineros();
+    }
+    public ArrayList<Albañil> getAlbaniles(){
+        return adminCreacionPersonas.getAlbaniles();
+    }
+    public ArrayList<Herrero> getHerreros(){
+        return adminCreacionPersonas.getHerreros();
+    }
+    public ArrayList<Carpintero> getCarpinteros(){
+        return adminCreacionPersonas.getCarpinteros();
     }
 
     //Mundo
     public String getNombreMundo(){
         return adminJuego.getNombreMundo();
     }
-    public Boolean sembrarArbol(){
-        return adminMundo.sembrarArbol();
+    public Boolean sembrarArbol(Boolean salir){
+        return adminMundo.sembrarArbol(salir);
     }
     public int getArboles(){
         return adminMundo.getArboles();
     }
-    public Boolean construirCasa(int idPersona){
-        return adminMundo.construirCasa(idPersona);
+    public Boolean construirCasa(int idPersona, Boolean salir){
+        return adminMundo.construirCasa(idPersona, salir);
     }
-    public void comprarBicicleta(int idComprador, int idVendedor){
-        adminVehiculo.comprarBicicleta(idComprador, idVendedor);
+    public void solicitarPrestamo(int idPrestamista, String interesado, double totalPrestamo, Boolean salir){
+        adminMundo.solicitarPrestamo(idPrestamista, interesado, totalPrestamo, salir);
     }
-    public void solicitarPrestamo(int idPrestamista, String interesado, double totalPrestamo){
-        adminMundo.solicitarPrestamo(idPrestamista, interesado, totalPrestamo);
-    }
-    public void pagarPrestamo(int idPrestamista, String pagadora, double pago){
-        adminMundo.pagarPrestamo(idPrestamista, pagadora, pago);
+    public void pagarPrestamo(int idPrestamista, String pagadora, double pago, Boolean salir){
+        adminMundo.pagarPrestamo(idPrestamista, pagadora, pago, salir);
     }
     public String imprimirGobierno(){
         return adminMundo.imprimirGobierno();
     }
 
+    public void construirBicicleta(int idHerreroConstructor, Boolean salir){
+        adminVehiculo.construirBicicleta(idHerreroConstructor, salir);
+    }
+    public void comprarBicicleta(int idComprador, int idVendedor, Boolean salir){
+        adminVehiculo.comprarBicicleta(idComprador, idVendedor, salir);
+    }
+    public void conducirBicicleta(int personaConductora, Boolean salir){
+        adminVehiculo.conducirBicicleta(personaConductora, salir);
+    }
+    public void construirAutomovil(int idCarpinteroConstructor, int idDoctorConstructor, Boolean salir) {
+        adminVehiculo.construirAutomovil(idCarpinteroConstructor, idDoctorConstructor, salir);
+    }
+    public void comprarAutomovil(int idPersonaCompradora, int idPersonaVendedora, Boolean salir){
+        adminVehiculo.comprarAutomovil(idPersonaCompradora, idPersonaVendedora, salir);
+    }
+    public void conducirAutomovil(int idPersonaConductora, Boolean salir){
+        adminVehiculo.conducirAutomovil(idPersonaConductora, salir);
+    }
     //Doctores
-    public void crearDoctor(int id, String nombre, String apellidos, String especialidad){
-        adminDoctor.crearDoctor(id, nombre, apellidos, especialidad);
+    public void crearDoctor(int id, String nombre, String apellidos, String especialidad, Boolean salir){
+        adminCreacionPersonas.crearDoctor(id, nombre, apellidos, especialidad, salir);
     }
-    public ArrayList<Doctor> getDoctores(){
-        return adminDoctor.getListaDeDoctores();
-    }
-
     //Cocineros
-    public ArrayList<Cocinero> getCocineros(){
-        return adminCocinero.getCocineros();
-    }
-    public void crearCocinero(int id, String nombre, String apellidos, String recetas){
-        adminCocinero.crearCocinero(id, nombre, apellidos, recetas);
+    public void crearCocinero(int id, String nombre, String apellidos, String recetas, Boolean salir){
+        adminCreacionPersonas.crearCocinero(id, nombre, apellidos, recetas, salir);
     }
     public void agregarReceta(String receta){
-        adminCocinero.agregarReceta(receta);
+        adminCreacionPersonas.agregarReceta(receta);
     }
     public String recetasNoDisponibles(String nuevasRecetas){
-        return adminCocinero.recetasNoDisponibles(nuevasRecetas);
+        return adminCreacionPersonas.recetasNoDisponibles(nuevasRecetas);
     }
-
     //Albaniles
-    public Boolean crearAlbanil(int id, String nombre, String apellidos){
-        return adminAlbanil.crearAlbañil(id, nombre, apellidos);
+    public Boolean crearAlbanil(int id, String nombre, String apellidos, Boolean salir){
+        return adminCreacionPersonas.crearAlbañil(id, nombre, apellidos, salir);
     }
-    public ArrayList<Albañil> getAlbaniles(){
-        return adminAlbanil.getMundo().getListaAlbaniles();
-    }
-
     //Herreros
-    public Boolean crearHerrero(int id, String nombre, String apellidos){
-        return adminHerrero.crearHerrero(id, nombre, apellidos);
+    public Boolean crearHerrero(int id, String nombre, String apellidos, Boolean salir){
+        return adminCreacionPersonas.crearHerrero(id, nombre, apellidos, salir);
     }
-    public ArrayList<Herrero> getHerreros(){
-        return adminHerrero.getMundo().getListaHerreros();
-    }
-    public void construirBicicleta(int idHerreroConstructor){
-        adminVehiculo.construirBicicleta(idHerreroConstructor);
-    }
-
     //Carpinteros
-    public Boolean crearCarpintero(int id, String nombre, String apellidos){
-        return adminCarpintero.crearCarpintero(id, nombre, apellidos);
-    }
-    public ArrayList<Carpintero> getCarpinteros(){
-        return adminCarpintero.getMundo().getListaCarpinteros();
+    public Boolean crearCarpintero(int id, String nombre, String apellidos, Boolean salir){
+        return adminCreacionPersonas.crearCarpintero(id, nombre, apellidos, salir);
     }
 
 

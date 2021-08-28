@@ -6,8 +6,11 @@ import uh.ac.cr.model.persona.*;
 import java.util.Scanner;
 
 public class InterfazJuego extends Interfaz{
+
+    private Scanner input;
     public InterfazJuego(Juego juego) {
         super(juego);
+        input = new Scanner(System.in);
     }
 
     public void imprimirEstadisticas(){
@@ -65,40 +68,34 @@ public class InterfazJuego extends Interfaz{
             System.out.println(c.toString());
         }
     }
-    public void sembrarArbol(){
-        if (super.getJuego().sembrarArbol()){
+    public void sembrarArbol(Boolean salir){
+        if (super.getJuego().sembrarArbol(salir)){
             System.out.println("Arbol sembrado");
             return;
         }
         System.out.println("Gobierno no dispone de dinero para sembrar un arbol");
     }
-    public void contruirCasa(){
-        Scanner input = new Scanner(System.in);
+    public void contruirCasa(Boolean salir){
         int idPersona;
         System.out.print("Digite la identificacion de persona que construirá casa: ");
         idPersona = input.nextInt();
         input.nextLine();
 
-        if (super.getJuego().construirCasa(idPersona)){
+        if (super.getJuego().construirCasa(idPersona, salir)){
             System.out.println("Casa construida");
             return;
         }
         System.out.println("Casa no pudo ser construida");
     }
-    public void construirBicicleta(){
+    public void construirBicicleta(Boolean salir){
         int idHerreroConstructor;
-        Scanner input = new Scanner(System.in);
-
-
         System.out.print("Identificacion de herrero constructor: ");
         idHerreroConstructor = input.nextInt();
         input.nextLine();
 
-        super.getJuego().construirBicicleta(idHerreroConstructor);
+        super.getJuego().construirBicicleta(idHerreroConstructor, salir);
     }
-    public void comprarBicicleta(){
-
-        Scanner input = new Scanner(System.in);
+    public void comprarBicicleta(Boolean salir){
 
         int idComprador;
         int idVendedor;
@@ -111,10 +108,55 @@ public class InterfazJuego extends Interfaz{
         idVendedor = input.nextInt();
         input.nextLine();
 
-        super.getJuego().comprarBicicleta(idComprador, idVendedor);
+        super.getJuego().comprarBicicleta(idComprador, idVendedor, salir);
     }
-    public void solicitarPrestamo(){
-        Scanner input = new Scanner(System.in);
+    public void conducirBicicleta(Boolean salir){
+        int idPersonaConductora;
+
+        System.out.print("Identificacion de persona que conducira bicicleta: ");
+        idPersonaConductora = input.nextInt();
+        input.nextLine();
+
+        super.getJuego().conducirBicicleta(idPersonaConductora, salir);
+    }
+    public void construirAutomovil(Boolean salir){
+        int idDoctorConstructor;
+        int idCarpinteroConstructor;
+
+        System.out.print("Identificacion de carpintero constructor: ");
+        idCarpinteroConstructor = input.nextInt();
+        input.nextLine();
+        System.out.print("Identificacion de doctor constructor: ");
+        idDoctorConstructor = input.nextInt();
+        input.nextLine();
+
+        super.getJuego().construirAutomovil(idCarpinteroConstructor, idDoctorConstructor, salir);
+    }
+    public void comprarAutomovil(Boolean salir){
+        int personaCompradora;
+        int personaVendedora;
+
+        System.out.print("Identificacion de persona compradora: ");
+        personaCompradora = input.nextInt();
+        input.nextLine();
+        System.out.print("Identificacion de persona vendedora: ");
+        personaVendedora = input.nextInt();
+        input.nextLine();
+
+        super.getJuego().comprarAutomovil(personaCompradora, personaVendedora, salir);
+
+    }
+    public void conducirAutomovil(Boolean salir){
+        int idPersonaConductora;
+
+        System.out.print("Identificacion de persona que conducira automovil: ");
+        idPersonaConductora = input.nextInt();
+        input.nextLine();
+
+        super.getJuego().conducirAutomovil(idPersonaConductora, salir);
+    }
+
+    public void solicitarPrestamo(Boolean salir){
 
         String interesado;
         int idPrestamista;
@@ -129,10 +171,9 @@ public class InterfazJuego extends Interfaz{
         cantidadPrestamo = input.nextDouble();
         input.nextLine();
 
-        super.getJuego().solicitarPrestamo(idPrestamista, interesado, cantidadPrestamo);
+        super.getJuego().solicitarPrestamo(idPrestamista, interesado, cantidadPrestamo, salir);
     }
-    public void pagarPrestamo(){
-        Scanner input = new Scanner(System.in);
+    public void pagarPrestamo(Boolean salir){
 
         int idPrestamista;
         String idPagador;
@@ -147,6 +188,6 @@ public class InterfazJuego extends Interfaz{
         cantidadAPagar = input.nextDouble();
         input.nextLine();
 
-        super.getJuego().pagarPrestamo(idPrestamista, idPagador, cantidadAPagar);
+        super.getJuego().pagarPrestamo(idPrestamista, idPagador, cantidadAPagar, salir);
     }
 }

@@ -15,9 +15,9 @@ public abstract class Persona implements Prestamista {
     private String apellidos;
     private double dinero;
     private int casas;
+    private Boolean personaSaludable;
     private ArrayList<Vehiculo> vehiculos;
     private ArrayList<Prestamo> prestamos;
-    private Boolean permisoConducirBicicleta;
 
 
     public Persona(int id, String nombre, String apellidos, double dinero, int casas, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos) {
@@ -28,7 +28,7 @@ public abstract class Persona implements Prestamista {
         this.casas = casas;
         this.vehiculos = vehiculos;
         this.prestamos = prestamos;
-        this.permisoConducirBicicleta = false;
+        personaSaludable = true;
     }
 
     public int getId() {
@@ -87,12 +87,11 @@ public abstract class Persona implements Prestamista {
         this.prestamos = prestamos;
     }
 
-    public Boolean getPermisoConducirBicicleta() {
-        return permisoConducirBicicleta;
+    public Boolean getPersonaSaludable() {
+        return personaSaludable;
     }
-
-    public void setPermisoConducirBicicleta(Boolean permisoConducirBicicleta) {
-        this.permisoConducirBicicleta = permisoConducirBicicleta;
+    public void setPersonaSaludable(Boolean personaSaludable) {
+        this.personaSaludable = personaSaludable;
     }
 
     public abstract void ganarDinero(double cantidad);
@@ -104,6 +103,7 @@ public abstract class Persona implements Prestamista {
         return "Id:" + Id + '\n' +
                 "Nombre: " + nombre + '\n' +
                 "Apellidos: " + apellidos + '\n' +
+                "Estado de salud: " + (personaSaludable ? "Saludable" : "Enfermo") + '\n' +
                 "Dinero: " + dinero + '\n' +
                 "Casas: " + casas + '\n' +
                 "Automoviles: " + this.getCantidadAutomoviles() + '\n' +
@@ -150,9 +150,45 @@ public abstract class Persona implements Prestamista {
         casas++;
     }
 
-    public void conducirBicicleta() {
-        dinero += 0.1;
-        permisoConducirBicicleta = false;
+    public Boolean conducirBicicleta() {
+        /**
+         * En caso de que alguna bicicleta este disponible para ser conducida, este metodo permite conducirla
+         */
+        for (Vehiculo v : vehiculos) {
+            if (v.getNombre().equals("Bicicileta")) {
+                if (v.getPuedeSerConducida()) {
+                    v.conducir();
+                    dinero += 0.1;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public Boolean conducirAutomovil() {
+        Vehiculo vehiculo = buscarVehiculoSinInteresesActivos();
+        if (vehiculo != null){
+            vehiculo.conducir();
+            return true;
+        }
+        for (Vehiculo v : vehiculos) {
+            if (v.getNombre().equals("Automovil")) {
+                v.conducir();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    Vehiculo buscarVehiculoSinInteresesActivos(){
+        for (Vehiculo v : vehiculos){
+            if (v.getNombre().equals("Automovil")) {
+                if (!v.puedeGanarInteres())
+                    return v;
+            }
+        }
+        return null;
     }
 
     public void venderBicicleta(double precio) {
@@ -166,14 +202,23 @@ public abstract class Persona implements Prestamista {
                 this.vehiculos.remove(i);
         }
     }
+
     public void comprarBicicleta(double precio) {
         dinero -= precio;
         vehiculos.add(new Bicicleta());
     }
-    public void construirAutomovil(double precio) {
+
+    public void agregarAutomovil() {
         vehiculos.add(new Automovil());
-        dinero -= precio;
     }
+
+    public void eliminarAutomovil() {
+        for (int i = 0; i < vehiculos.size(); i++) {
+            if (vehiculos.get(i).getNombre() == "Automovil")
+                this.vehiculos.remove(i);
+        }
+    }
+
     @Override
     public void pagarPrestamo(int prestamista, double abono) {
         ArrayList<Prestamo> prestamosCopy = getPrestamos();
@@ -186,16 +231,32 @@ public abstract class Persona implements Prestamista {
             }
         }
     }
+
     @Override
     public void solicitarPrestamo(int prestamista, double total) {
         this.prestamos.add(new Prestamo(prestamista, this.getId(), total, total, true));
         this.dinero += total;
     }
+
     public void prestarDinero(double total) {
         dinero -= total;
     }
+
     public void recibirPagoPrestamo(double abono) {
         dinero += abono;
+    }
+
+    public void cambiarEstadoSalud(Boolean estado){
+        this.personaSaludable = estado;
+    }
+
+    public void permitirConduccionBicicletas(){
+        for (Vehiculo v: vehiculos){
+            if (v.getNombre().equals("Bicicleta")){
+                if (!v.getPuedeSerConducida())
+                    v.setPuedeSerConducida(true);
+            }
+        }
     }
 }
 

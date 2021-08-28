@@ -2,7 +2,7 @@
 
 #### Nota: Las personas actualmente se crean con $10 para realizar pruebas
 
-#### Nota 2: Aun faltan validaciones tomando en cuanta las operaciones que se realizan en el mundo.
+#### Nota 2: Aun faltan validaciones para que se muera la persona y que se cure
 
 'Salir'
 
@@ -27,6 +27,14 @@
 'Construir bicicleta'
 
 'Comprar bicicleta'
+
+'Conducir bicicleta'
+
+'Construir automovil'
+
+'Comprar automovil'
+
+'Conducir automovil'
 
 'Solicitar prestamo'
 

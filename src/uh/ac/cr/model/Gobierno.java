@@ -72,4 +72,7 @@ public class Gobierno implements Prestamista {
                 "\tCapital economico: " + capitalEconomico + "\n" +
                 this.prestamosToString();
     }
+    public void darDinero(double cantidad){
+        capitalEconomico -= cantidad;
+    }
 }

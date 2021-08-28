@@ -1,14 +1,12 @@
 package uh.ac.cr.model.vehiculo;
-public class Vehiculo {
+public abstract class Vehiculo {
 
     private int NumeroLlantas;
     private String Nombre;
-    private int cantVecesConducido;
 
-    public Vehiculo(int numeroLlantas, String nombre, int cantVecesConducido) {
+    public Vehiculo(int numeroLlantas, String nombre) {
         NumeroLlantas = numeroLlantas;
         Nombre = nombre;
-        this.cantVecesConducido = cantVecesConducido;
     }
     public int getNumeroLlantas() {
         return NumeroLlantas;
@@ -22,12 +20,11 @@ public class Vehiculo {
     public void setNombre(String nombre) {
         Nombre = nombre;
     }
-    public int getCantVecesConducido() {
-        return cantVecesConducido;
-    }
-    public void setCantVecesConducido(int cantVecesConducido) {
-        this.cantVecesConducido = cantVecesConducido;
-    }
+    public abstract void conducir();
+    public abstract Boolean getPuedeSerConducida();
+    public abstract void setPuedeSerConducida(Boolean puedeSerConducida);
+    public abstract void setPuedeGanarInteres(boolean puedeGanarInteres);
+    public abstract boolean puedeGanarInteres();
 
 
 }

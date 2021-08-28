@@ -70,11 +70,7 @@ public class Main {
         Mundo mundo = null;
         Juego juego = null;
         InterfazJuego interfazJuego = null;
-        InterfazDoctor interfazDoctor = null;
-        InterfazCocinero interfazCocinero = null;
-        InterfazAlbanil interfazAlbanil = null;
-        InterfazHerrero interfazHerrero = null;
-        InterfazCarpintero interfazCarpintero = null;
+        InterfazPersonas interfazPersonas = null;
 
         String opcion = "";
 
@@ -93,11 +89,7 @@ public class Main {
                     mundo = new Mundo(nombreMundo);
                     juego = new Juego(mundo);
                     interfazJuego = new InterfazJuego(juego);
-                    interfazDoctor = new InterfazDoctor(juego);
-                    interfazCocinero = new InterfazCocinero(juego);
-                    interfazAlbanil = new InterfazAlbanil(juego);
-                    interfazHerrero = new InterfazHerrero(juego);
-                    interfazCarpintero = new InterfazCarpintero(juego);
+                    interfazPersonas = new InterfazPersonas(juego);
                     break;
                 }
                 case "Crear doctor":{
@@ -105,7 +97,7 @@ public class Main {
                         System.out.println("Mundo no iniciado");
                         break;
                     }
-                    interfazDoctor.crearDoctor();
+                    interfazPersonas.crearDoctor(salir);
                     break;
                 }
                 case "Crear cocinero":{
@@ -113,7 +105,7 @@ public class Main {
                         System.out.println("Mundo no iniciado");
                         break;
                     }
-                    interfazCocinero.crearCocinero();
+                    interfazPersonas.crearCocinero(salir);
                     break;
                 }
                 case "Crear albañil":{
@@ -121,7 +113,7 @@ public class Main {
                         System.out.println("Mundo no iniciado");
                         break;
                     }
-                    interfazAlbanil.crearAlbanil();
+                    interfazPersonas.crearAlbanil(salir);
                     break;
                 }
                 case "Crear herrero":{
@@ -129,7 +121,7 @@ public class Main {
                         System.out.println("Mundo no iniciado");
                         break;
                     }
-                    interfazHerrero.crearHerrero();
+                    interfazPersonas.crearHerrero(salir);
                     break;
                 }
                 case "Crear carpintero":{
@@ -137,7 +129,7 @@ public class Main {
                         System.out.println("Mundo no iniciado");
                         break;
                     }
-                    interfazCarpintero.crearCarpintero();
+                    interfazPersonas.crearCarpintero(salir);
                     break;
                 }
                 case "Sembrar arbol":{
@@ -145,7 +137,7 @@ public class Main {
                         System.out.println("Mundo no iniciado");
                         break;
                     }
-                    interfazJuego.sembrarArbol();
+                    interfazJuego.sembrarArbol(salir);
                     break;
                 }
                 case "Construir casa":{
@@ -153,7 +145,7 @@ public class Main {
                         System.out.println("Mundo no iniciado");
                         break;
                     }
-                    interfazJuego.contruirCasa();
+                    interfazJuego.contruirCasa(salir);
                     break;
                 }
                 case "Construir bicicleta":{
@@ -161,7 +153,7 @@ public class Main {
                         System.out.println("Mundo no iniciado");
                         break;
                     }
-                    interfazJuego.construirBicicleta();
+                    interfazJuego.construirBicicleta(salir);
                     break;
                 }
                 case "Comprar bicicleta":{
@@ -169,7 +161,39 @@ public class Main {
                         System.out.println("Mundo no iniciado");
                         break;
                     }
-                    interfazJuego.comprarBicicleta();
+                    interfazJuego.comprarBicicleta(salir);
+                    break;
+                }
+                case "Conducir bicicleta":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazJuego.conducirBicicleta(salir);
+                    break;
+                }
+                case "Construir automovil":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazJuego.construirAutomovil(salir);
+                    break;
+                }
+                case "Comprar automovil":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazJuego.comprarAutomovil(salir);
+                    break;
+                }
+                case "Conducir automovil":{
+                    if (mundo == null ) {
+                        System.out.println("Mundo no iniciado");
+                        break;
+                    }
+                    interfazJuego.conducirAutomovil(salir);
                     break;
                 }
                 case "Solicitar prestamo":{
@@ -177,7 +201,7 @@ public class Main {
                         System.out.println("Mundo no iniciado");
                         break;
                     }
-                    interfazJuego.solicitarPrestamo();
+                    interfazJuego.solicitarPrestamo(salir);
                     break;
                 }
                 case "Pagar prestamo":{
@@ -185,7 +209,7 @@ public class Main {
                         System.out.println("Mundo no iniciado");
                         break;
                     }
-                    interfazJuego.pagarPrestamo();
+                    interfazJuego.pagarPrestamo(salir);
                     break;
                 }
                 case "Imprimir estadisticas":{

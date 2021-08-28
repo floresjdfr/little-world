@@ -1,20 +1,18 @@
 package uh.ac.cr.logic;
 
-import uh.ac.cr.logic.AdministradorArchivo;
 import uh.ac.cr.model.*;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 
 import uh.ac.cr.model.persona.*;
 
 public class AdministrarMundo extends Administrador {
+    AdministrarValidaciones validaciones;
+
     public AdministrarMundo(Mundo mundo) {
         super(mundo);
+        validaciones = new AdministrarValidaciones(mundo);
     }
 
     public String getNombreMundo() {
@@ -25,15 +23,16 @@ public class AdministrarMundo extends Administrador {
         return super.getMundo().getArboles();
     }
 
-    public Boolean sembrarArbol() {
+    public Boolean sembrarArbol(Boolean salir) {
         if (super.getMundo().getGobierno().getCapitalEconomico() > 0.5) {//Verifica que el gobierna tenga capital para pagar el arbol
             super.getMundo().sembrarArbol();
+            validaciones.validarTodasOperaciones(salir);
             return true;
         }
         return false;
     }
 
-    public Boolean construirCasa(int idPersona) {
+    public Boolean construirCasa(int idPersona, Boolean salir) {
         Persona p = null;
 
         try {
@@ -56,12 +55,16 @@ public class AdministrarMundo extends Administrador {
             pagarConstruccionEmpleados();
             p.construirCasa(dineroNecesario);
             System.out.println("Casa construida");
+
+            validaciones.validacionesCreacion();
+            validaciones.validarTodasOperaciones(salir);
+
             return true;
         }
         return false;
     }
 
-    public Boolean cumpleRequisitosParaConstruirCasa(Persona p) {
+    private Boolean cumpleRequisitosParaConstruirCasa(Persona p) {
 
         int cantCarpinteros = super.getMundo().getListaCarpinteros().size();
         int cantAlbaniles = super.getMundo().getListaAlbaniles().size();
@@ -87,7 +90,7 @@ public class AdministrarMundo extends Administrador {
         return false;
     }
 
-    public void pagarConstruccionEmpleados() {
+    private void pagarConstruccionEmpleados() {
 
         //Se ocupa pagar a 3 albañiles random
         for (int i = 0; i < 3; i++)
@@ -99,19 +102,19 @@ public class AdministrarMundo extends Administrador {
         this.getMundo().pagarAGobierno(10);
     }
 
-    public void pagarContruccionAbanil(double cantidad) {
+    private void pagarContruccionAbanil(double cantidad) {
         Random rand = new Random();
         int albanilRand = rand.nextInt(super.getMundo().getListaAlbaniles().size());
         super.getMundo().pagarConstruccionAlbanil(super.getMundo().getListaAlbaniles().get(albanilRand), cantidad);
     }
 
-    public void pagarContruccionHerrero(double cantidad) {
+    private void pagarContruccionHerrero(double cantidad) {
         Random rand = new Random();
         int herreroRand = rand.nextInt(super.getMundo().getListaHerreros().size());
         super.getMundo().pagarConstruccionHerreros(super.getMundo().getListaHerreros().get(herreroRand), cantidad);
     }
 
-    public void pagarContruccionCarpintero(double cantidad) {
+    private void pagarContruccionCarpintero(double cantidad) {
         Random rand = new Random();
         int carpinteroRand = rand.nextInt(super.getMundo().getListaCarpinteros().size());
         super.getMundo().pagarConstruccionCarpintero(super.getMundo().getListaCarpinteros().get(carpinteroRand), cantidad);
@@ -121,7 +124,7 @@ public class AdministrarMundo extends Administrador {
         return super.getMundo().buscarPersona(idPersona);
     }
 
-    public Boolean solicitarPrestamo(int idPrestamista, String interesado, double totalPrestamo) {
+    public Boolean solicitarPrestamo(int idPrestamista, String interesado, double totalPrestamo, Boolean salir) {
 
         Persona personaPrestamista = this.buscarPersona(idPrestamista);
         int idInteresado;
@@ -137,6 +140,9 @@ public class AdministrarMundo extends Administrador {
                 if (this.getMundo().getGobierno().getPrestamos().size() < 2) {
                     this.getMundo().getGobierno().solicitarPrestamo(idPrestamista, totalPrestamo);
                     personaPrestamista.prestarDinero(totalPrestamo);
+
+                    validaciones.validarTodasOperaciones(salir);
+
                     return true;
                 }
                 System.out.println("Gobierno ya posee 2 prestamos activos");
@@ -160,6 +166,10 @@ public class AdministrarMundo extends Administrador {
             if (personaPrestamista.getDinero() >= totalPrestamo) {
                 personaInteresada.solicitarPrestamo(idPrestamista, totalPrestamo);
                 personaPrestamista.prestarDinero(totalPrestamo);
+
+                validaciones.validacionesCreacion();
+                validaciones.validarTodasOperaciones(salir);
+
                 return true;
             }
             System.out.println("Persona prestamista no dispone de dinero suficiente");
@@ -169,7 +179,7 @@ public class AdministrarMundo extends Administrador {
         return false;
     }
 
-    public Boolean pagarPrestamo(int idPrestamista, String idPagador, double cantidadAPagar) {
+    public Boolean pagarPrestamo(int idPrestamista, String idPagador, double cantidadAPagar, Boolean salir) {
 
         int idPagadorInt;
         Persona personaPrestamista = this.buscarPersona(idPrestamista);
@@ -185,6 +195,9 @@ public class AdministrarMundo extends Administrador {
             if (this.getMundo().getGobierno().getCapitalEconomico() >= cantidadAPagar) {
                 this.getMundo().getGobierno().pagarPrestamo(idPrestamista, cantidadAPagar);
                 personaPrestamista.recibirPagoPrestamo(cantidadAPagar);
+
+                validaciones.validarTodasOperaciones(salir);
+
                 return true;
             }
             System.out.println("Persona pagadora no dispone de dinero suficiente");
@@ -207,6 +220,10 @@ public class AdministrarMundo extends Administrador {
             if (personaPagadora.getDinero() >= cantidadAPagar) {
                 personaPagadora.pagarPrestamo(idPrestamista, cantidadAPagar);
                 personaPrestamista.recibirPagoPrestamo(cantidadAPagar);
+
+                validaciones.validacionesCreacion();
+                validaciones.validarTodasOperaciones(salir);
+
                 return true;
             }
             System.out.println("Persona pagadora no dispone de dinero suficiente");
@@ -215,7 +232,8 @@ public class AdministrarMundo extends Administrador {
         System.out.println("Persona pagadora no existe");
         return false;
     }
-    String imprimirGobierno(){
+
+    public String imprimirGobierno() {
         return this.getMundo().getGobierno().toString();
     }
 }
