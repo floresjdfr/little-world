@@ -2,9 +2,11 @@ package uh.ac.cr.interfaz;
 
 import uh.ac.cr.logic.Juego;
 
+import javax.rmi.ssl.SslRMIClientSocketFactory;
 import java.util.Scanner;
 
 public class InterfazPersonas extends Interfaz{
+    private Scanner input = new Scanner(System.in);
     public InterfazPersonas(Juego juego) {
         super(juego);
     }
@@ -12,13 +14,19 @@ public class InterfazPersonas extends Interfaz{
     public void crearAlbanil(Boolean salir){
 
         int id = 0;
+
         String nombre = "";
         String apellidos = "";
 
-        Scanner input = new Scanner(System.in);
+
         System.out.print("ID albañil: ");
-        id = input.nextInt();
-        input.nextLine();
+        String supuestoID;
+        supuestoID = input.nextLine();
+        id = super.getJuego().esIntValido(supuestoID);
+        if (id == -1){
+            System.out.println("No puede ingresar caracteres para ese campo, solo numeros");
+            return;
+        }
         System.out.print("Nombre albañil: ");
         nombre = input.nextLine();
         System.out.print("Apellidos albañil: ");
@@ -33,10 +41,14 @@ public class InterfazPersonas extends Interfaz{
         String nombre = "";
         String apellidos = "";
 
-        Scanner input = new Scanner(System.in);
         System.out.print("ID carpintero: ");
-        id = input.nextInt();
-        input.nextLine();
+        String supuestoID;
+        supuestoID = input.nextLine();
+        id = super.getJuego().esIntValido(supuestoID);
+        if (id == -1){
+            System.out.println("No puede ingresar caracteres para ese campo, solo numeros");
+            return;
+        }
         System.out.print("Nombre carpintero: ");
         nombre = input.nextLine();
         System.out.print("Apellidos carpintero: ");
@@ -51,10 +63,15 @@ public class InterfazPersonas extends Interfaz{
         String apellidos = "";
         String recetas = "";
 
-        Scanner input = new Scanner(System.in);
+
         System.out.print("ID cocinero: ");
-        id = input.nextInt();
-        input.nextLine();
+        String supuestoID;
+        supuestoID = input.nextLine();
+        id = super.getJuego().esIntValido(supuestoID);
+        if (id == -1){
+            System.out.println("No puede ingresar caracteres para ese campo, solo numeros");
+            return;
+        }
         System.out.print("Nombre cocinero: ");
         nombre = input.nextLine();
         System.out.print("Apellidos cocinero: ");
@@ -78,10 +95,15 @@ public class InterfazPersonas extends Interfaz{
         String nombre;
         String apellidos;
         String especialidad;
-        Scanner input = new Scanner(System.in);
+
         System.out.print("ID doctor: ");
-        Id = input.nextInt();
-        input.nextLine();
+        String supuestoID;
+        supuestoID = input.nextLine();
+        Id = super.getJuego().esIntValido(supuestoID);
+        if (Id == -1){
+            System.out.println("No puede ingresar caracteres para ese campo, solo numeros");
+            return;
+        }
         System.out.print("Nombre doctor: ");
         nombre = input.nextLine();
         System.out.print("Apellidos doctor: ");
@@ -97,10 +119,14 @@ public class InterfazPersonas extends Interfaz{
         String nombre = "";
         String apellidos = "";
 
-        Scanner input = new Scanner(System.in);
         System.out.print("ID herrero: ");
-        id = input.nextInt();
-        input.nextLine();
+        String supuestoID;
+        supuestoID = input.nextLine();
+        id = super.getJuego().esIntValido(supuestoID);
+        if (id == -1){
+            System.out.println("No puede ingresar caracteres para ese campo, solo numeros");
+            return;
+        }
         System.out.print("Nombre herrero: ");
         nombre = input.nextLine();
         System.out.print("Apellidos herrero: ");

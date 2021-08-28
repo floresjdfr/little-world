@@ -17,6 +17,12 @@ public class Cocinero extends Persona {
         this.recetas = recetas;
     }
 
+    public Cocinero(int id, String nombre, String apellidos, double dinero, int casas, Boolean personaSaludable, int contadorOperaciones5,
+                    int contadorOperaciones10, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos, ArrayList<String> recetas) {
+        super(id, nombre, apellidos, dinero, casas, personaSaludable, contadorOperaciones5, contadorOperaciones10, vehiculos, prestamos);
+        this.recetas = recetas;
+    }
+
     public ArrayList<String> getRecetas() {
         return recetas;
     }

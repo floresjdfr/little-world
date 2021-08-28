@@ -15,6 +15,12 @@ public class Doctor extends Persona {
         this.especialidad = especialidad;
     }
 
+    public Doctor(int id, String nombre, String apellidos, double dinero, int casas, Boolean personaSaludable, int contadorOperaciones5,
+                  int contadorOperaciones10, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos, String especialidad) {
+        super(id, nombre, apellidos, dinero, casas, personaSaludable, contadorOperaciones5, contadorOperaciones10, vehiculos, prestamos);
+        this.especialidad = especialidad;
+    }
+
     public String getEspecialidad() {
         return especialidad;
     }

@@ -12,6 +12,12 @@ public class Carpintero extends Persona {
     public Carpintero(int id, String nombre, String apellidos, double dinero, int casas, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos) {
         super(id, nombre, apellidos, dinero, casas, vehiculos, prestamos);
     }
+
+    public Carpintero(int id, String nombre, String apellidos, double dinero, int casas, Boolean personaSaludable, int contadorOperaciones5,
+                      int contadorOperaciones10, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos) {
+        super(id, nombre, apellidos, dinero, casas, personaSaludable, contadorOperaciones5, contadorOperaciones10, vehiculos, prestamos);
+    }
+
     @Override
     public void ganarDinero(double cantidad) {
         super.setDinero(super.getDinero() + cantidad);

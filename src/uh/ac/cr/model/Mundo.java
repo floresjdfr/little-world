@@ -25,6 +25,24 @@ public class Mundo {
 
     private int personasMuertas;
 
+    public Mundo (String name, int arboles, int contadorCreacion, int contadorOperaciones5, int contadorOperaciones10, int contadorOperaciones15,
+                 int contadorOperaciones30, int personasMuertas, Gobierno gobierno, ArrayList<Doctor> listaDoctores, ArrayList<Cocinero> listaCocineros,
+                 ArrayList<Albañil> listaAlbaniles, ArrayList<Herrero> listaHerreros, ArrayList<Carpintero> listaCarpinteros) {
+        this.name = name;
+        this.gobierno = gobierno;
+        this.listaDoctores = listaDoctores;
+        this.listaCocineros = listaCocineros;
+        this.listaAlbaniles = listaAlbaniles;
+        this.listaHerreros = listaHerreros;
+        this.listaCarpinteros = listaCarpinteros;
+        this.arboles = arboles;
+        this.contadorCreacion = contadorCreacion;
+        this.contadorOperaciones5 = contadorOperaciones5;
+        this.contadorOperaciones10 = contadorOperaciones10;
+        this.contadorOperaciones15 = contadorOperaciones15;
+        this.contadorOperaciones30 = contadorOperaciones30;
+        this.personasMuertas = personasMuertas;
+    }
 
     public Mundo(String nombre) {
         this.name = nombre;

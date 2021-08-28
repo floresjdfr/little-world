@@ -8,6 +8,9 @@ public abstract class Vehiculo {
         NumeroLlantas = numeroLlantas;
         Nombre = nombre;
     }
+
+    public abstract String toFile();
+
     public int getNumeroLlantas() {
         return NumeroLlantas;
     }

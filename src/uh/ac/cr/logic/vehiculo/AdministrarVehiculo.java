@@ -29,6 +29,7 @@ public class AdministrarVehiculo extends Administrador {
 
             validaciones.validacionesCreacion();
             validaciones.validarTodasOperaciones(salir);
+            validaciones.validarPersonaOperaciones10(h);
         }
     }
 
@@ -54,6 +55,7 @@ public class AdministrarVehiculo extends Administrador {
                     return;
                 }
                 validaciones.validarTodasOperaciones(salir);
+                validaciones.validarPersonaOperaciones10(p);
                 return;
             }
             System.out.println("Persona no posee bicicletas");
@@ -81,7 +83,7 @@ public class AdministrarVehiculo extends Administrador {
                 super.getMundo().muerteArboles(cantidadArbolesMueren);
 
                 validaciones.validarTodasOperaciones(salir);
-
+                validaciones.validarPersonaOperaciones10(p);
                 return;
             }
             System.out.println("Persona no posee automoviles");
@@ -113,7 +115,7 @@ public class AdministrarVehiculo extends Administrador {
                     System.out.println("Trueque de bicicleta realizado");
 
                     validaciones.validarTodasOperaciones(salir);
-
+                    validaciones.validarPersonaOperaciones10(pc);
                     return;
                 }
                 System.out.println("Comprardor no tiene dinero suficiente");
@@ -156,6 +158,8 @@ public class AdministrarVehiculo extends Administrador {
             System.out.println("Automovil construido");
             validaciones.validacionesCreacion();
             validaciones.validarTodasOperaciones(salir);
+            validaciones.validarPersonaOperaciones10(c);
+            validaciones.validarPersonaOperaciones10(d);
         }
     }
 
@@ -222,9 +226,9 @@ public class AdministrarVehiculo extends Administrador {
             vendedora.eliminarAutomovil();
 
             validaciones.validarTodasOperaciones(salir);
+            validaciones.validarPersonaOperaciones10(compradora);
         }
     }
-
     private Boolean verificarReqVendedoraAuto(Persona p) {
         ArrayList<Vehiculo> cpyVehiculos = p.getVehiculos();
         for (Vehiculo v : cpyVehiculos)

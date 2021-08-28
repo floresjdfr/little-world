@@ -8,6 +8,8 @@ public class Prestamo {
     private double pendientePago;
     private Boolean estado;
 
+
+
     public Prestamo(int prestamista, int interesado, double totalPrestamo, double pendientePago, Boolean estado) {
         this.idPrestamista = prestamista;
         this.idInteresado = interesado;
@@ -45,11 +47,19 @@ public class Prestamo {
     public void setEstado(Boolean estado) {
         this.estado = estado;
     }
-
-
     public void abonar(double nuevoAbono){
         this.pendientePago -= nuevoAbono;
         if (this.pendientePago <= 0)
             estado = false;
+    }
+    public String toFile(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(idPrestamista  + "\n");
+        stringBuilder.append(idInteresado  + "\n");
+        stringBuilder.append(totalPrestamo  + "\n");
+        stringBuilder.append(pendientePago  + "\n");
+        stringBuilder.append(estado  + "\n");
+        stringBuilder.append("/Prestamo\n");
+        return stringBuilder.toString();
     }
 }

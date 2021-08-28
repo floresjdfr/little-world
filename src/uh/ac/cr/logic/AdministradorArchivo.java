@@ -2,22 +2,25 @@ package uh.ac.cr.logic;
 
 import uh.ac.cr.model.Mundo;
 import uh.ac.cr.model.Gobierno;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class AdministradorArchivo {
-    FileWriter fileWriter = null;
-/*
-    public AdministradorArchivo() {
-    }
 
-    public void saveFile(Mundo world){
+
+    public AdministradorArchivo() {
+
+    }
+    public void saveFile(Mundo world) {
+
         String worldToSave = "" +
                 "<world-name>\n" +
                 world.getName() + "\n" +
                 "<GovernmentCapital>\n" +
                 world.g
-                world.getGobierno().getCapitalEconomico() + "\n" +
+        world.getGobierno().getCapitalEconomico() + "\n" +
                 "<GovernmentPresident>\n" +
                 world.getLocalGovernment().getPresident() + "\n" +
                 "<Streets>" +
@@ -29,13 +32,13 @@ public class AdministradorArchivo {
                 "<Intersections>" +
                 "</Intersections>";
         try {
-            fileWriter = new FileWriter(world.getName()+".txt");
+            fileWriter = new FileWriter(world.getName() + ".txt");
             fileWriter.write(worldToSave);
             fileWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if(fileWriter != null){
+        } finally {
+            if (fileWriter != null) {
                 try {
                     fileWriter.close();
                 } catch (IOException e) {
@@ -46,10 +49,8 @@ public class AdministradorArchivo {
         }
     }
 
-    public void readFile(){
+    public void readFile() {
         //todo
-
-
     }
-*/
+
 }

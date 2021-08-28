@@ -58,6 +58,7 @@ public class AdministrarMundo extends Administrador {
 
             validaciones.validacionesCreacion();
             validaciones.validarTodasOperaciones(salir);
+            validaciones.validarPersonaOperaciones10(p);
 
             return true;
         }
@@ -143,6 +144,7 @@ public class AdministrarMundo extends Administrador {
 
                     validaciones.validarTodasOperaciones(salir);
 
+
                     return true;
                 }
                 System.out.println("Gobierno ya posee 2 prestamos activos");
@@ -169,6 +171,7 @@ public class AdministrarMundo extends Administrador {
 
                 validaciones.validacionesCreacion();
                 validaciones.validarTodasOperaciones(salir);
+                validaciones.validarPersonaOperaciones10(personaInteresada);
 
                 return true;
             }
@@ -223,6 +226,7 @@ public class AdministrarMundo extends Administrador {
 
                 validaciones.validacionesCreacion();
                 validaciones.validarTodasOperaciones(salir);
+                validaciones.validarPersonaOperaciones10(personaPagadora);
 
                 return true;
             }

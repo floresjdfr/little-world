@@ -10,6 +10,38 @@ public class AdministrarValidaciones extends Administrador {
         super(mundo);
     }
 
+    public static int esIntValido(String supuestoInt){
+        try{
+            return Integer.parseInt(supuestoInt);
+
+        }catch (Exception ex){
+            return -1;
+        }
+    }
+    public Boolean existeUsuario(int id){
+        for (Persona p : super.getMundo().getListaDoctores()) {
+            if (p.getId() == id)
+                return true;
+        }
+        for (Persona p : super.getMundo().getListaCocineros()) {
+            if (p.getId() == id)
+                return true;
+        }
+        for (Persona p : super.getMundo().getListaAlbaniles()) {
+            if (p.getId() == id)
+                return true;
+        }
+        for (Persona p : super.getMundo().getListaHerreros()) {
+            if (p.getId() == id)
+                return true;
+        }
+        for (Persona p : super.getMundo().getListaCocineros()) {
+            if (p.getId() == id)
+                return true;
+        }
+        return false;
+    }
+
     public boolean iniciarOperacionesCreacion() {
         if (super.getMundo().getContadorCreacion() == 5) {
             super.getMundo().resetCotnadorCreacion();
@@ -61,6 +93,7 @@ public class AdministrarValidaciones extends Administrador {
         validarOperaciones10();
         validarOperaciones15();
         validarOperaciones30(salir);
+        validarPersonaOperaciones5();
     }
 
     public void validacionesCreacion() {
@@ -107,7 +140,7 @@ public class AdministrarValidaciones extends Administrador {
     //Metodos para 5 operaciones
     public void enfermarTodosConProbabilidad50() {
         for (Persona p : super.getMundo().getListaDoctores()) {
-            if (super.getMundo().getRandom1and2() == 1){
+            if (super.getMundo().getRandom1and2() == 1) {
                 super.getMundo().enfermarPersona(p);
             }
         }
@@ -129,55 +162,69 @@ public class AdministrarValidaciones extends Administrador {
         }
     }
 
-    public void curarMatarEnfermosProbabilidad50() {
-        for (int i = 0; i < super.getMundo().getListaDoctores().size(); i++) {
-            if (!super.getMundo().getListaDoctores().get(i).getPersonaSaludable()) {
-                if (super.getMundo().getRandom1and2() == 1)
-                    super.getMundo().getListaDoctores().get(i).setPersonaSaludable(true);
-                else {
-                    super.getMundo().getListaDoctores().remove(i);
-                    super.getMundo().setPersonasMuertas(super.getMundo().getPersonasMuertas() + 1);
-                }
-            }
+    public void curarMatarPersonaProbabilidad(Persona p) {
+        if (super.getMundo().getRandom1and2() == 1) {
+            p.setPersonaSaludable(true);
+            p.resetearContadorOperaciones5();
+        } else {
+            String clase = p.getClass().getSimpleName();
+            this.eliminarPersona(p, clase);
+            super.getMundo().setPersonasMuertas(super.getMundo().getPersonasMuertas() + 1);
         }
-        for (int i = 0; i < super.getMundo().getListaCocineros().size(); i++) {
-            if (!super.getMundo().getListaCocineros().get(i).getPersonaSaludable()) {
-                if (super.getMundo().getRandom1and2() == 1)
-                    super.getMundo().getListaCocineros().get(i).setPersonaSaludable(true);
-                else {
-                    super.getMundo().getListaCocineros().remove(i);
-                    super.getMundo().setPersonasMuertas(super.getMundo().getPersonasMuertas() + 1);
+    }
+
+    public void matarPersona(Persona p) {
+        String clase = p.getClass().getSimpleName();
+        this.eliminarPersona(p, clase);
+        super.getMundo().setPersonasMuertas(super.getMundo().getPersonasMuertas() + 1);
+    }
+
+    public void eliminarPersona(Persona p, String clase) {
+        switch (clase) {
+            case "Herrero": {
+                for (int i = 0; i < super.getMundo().getListaHerreros().size(); i++) {
+                    if (super.getMundo().getListaHerreros().get(i).getId() == p.getId()) {
+                        super.getMundo().getListaHerreros().remove(i);
+                        return;
+                    }
                 }
+                break;
             }
-        }
-        for (int i = 0; i < super.getMundo().getListaCarpinteros().size(); i++) {
-            if (!super.getMundo().getListaCarpinteros().get(i).getPersonaSaludable()) {
-                if (super.getMundo().getRandom1and2() == 1)
-                    super.getMundo().getListaCarpinteros().get(i).setPersonaSaludable(true);
-                else {
-                    super.getMundo().getListaCarpinteros().remove(i);
-                    super.getMundo().setPersonasMuertas(super.getMundo().getPersonasMuertas() + 1);
+            case "Doctor": {
+                for (int i = 0; i < super.getMundo().getListaDoctores().size(); i++) {
+                    if (super.getMundo().getListaDoctores().get(i).getId() == p.getId()) {
+                        super.getMundo().getListaDoctores().remove(i);
+                        return;
+                    }
                 }
+                break;
             }
-        }
-        for (int i = 0; i < super.getMundo().getListaAlbaniles().size(); i++) {
-            if (!super.getMundo().getListaAlbaniles().get(i).getPersonaSaludable()) {
-                if (super.getMundo().getRandom1and2() == 1)
-                    super.getMundo().getListaAlbaniles().get(i).setPersonaSaludable(true);
-                else {
-                    super.getMundo().getListaAlbaniles().remove(i);
-                    super.getMundo().setPersonasMuertas(super.getMundo().getPersonasMuertas() + 1);
+            case "Cocinero": {
+                for (int i = 0; i < super.getMundo().getListaCocineros().size(); i++) {
+                    if (super.getMundo().getListaCocineros().get(i).getId() == p.getId()) {
+                        super.getMundo().getListaCocineros().remove(i);
+                        return;
+                    }
                 }
+                break;
             }
-        }
-        for (int i = 0; i < super.getMundo().getListaHerreros().size(); i++) {
-            if (!super.getMundo().getListaHerreros().get(i).getPersonaSaludable()) {
-                if (super.getMundo().getRandom1and2() == 1)
-                    super.getMundo().getListaHerreros().get(i).setPersonaSaludable(true);
-                else {
-                    super.getMundo().getListaHerreros().remove(i);
-                    super.getMundo().setPersonasMuertas(super.getMundo().getPersonasMuertas() + 1);
+            case "Carpintero": {
+                for (int i = 0; i < super.getMundo().getListaCarpinteros().size(); i++) {
+                    if (super.getMundo().getListaCarpinteros().get(i).getId() == p.getId()) {
+                        super.getMundo().getListaCarpinteros().remove(i);
+                        return;
+                    }
                 }
+                break;
+            }
+            case "Albañil": {
+                for (int i = 0; i < super.getMundo().getListaAlbaniles().size(); i++) {
+                    if (super.getMundo().getListaAlbaniles().get(i).getId() == p.getId()) {
+                        super.getMundo().getListaAlbaniles().remove(i);
+                        return;
+                    }
+                }
+                break;
             }
         }
     }
@@ -283,5 +330,59 @@ public class AdministrarValidaciones extends Administrador {
         if (super.getMundo().getGobierno().getPrestamos().size() > 0)
             return true;
         return false;
+    }
+
+
+    //Validaciones realizadas en cada persona porque
+    public Boolean iniciarOperacionesPersona5(Persona p) {
+        p.aumentarContadorOperaciones5();
+        if (!p.getPersonaSaludable()) {
+            if (p.getContadorOperaciones5() == 5) {
+                p.resetearContadorOperaciones5();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Boolean iniciarOperacionesPersona10(Persona p) {
+        if (p.getPrestamos().size() > 0) {
+            if (p.getContadorOperaciones5() == 10) {
+                p.resetearContadorOperaciones5();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void validarPersonaOperaciones5() {
+
+        for (Persona p : super.getMundo().getListaDoctores()) {
+            if (iniciarOperacionesPersona5(p))
+                this.curarMatarPersonaProbabilidad(p);
+        }
+        for (Persona p : super.getMundo().getListaCocineros()) {
+            if (iniciarOperacionesPersona5(p))
+                this.curarMatarPersonaProbabilidad(p);
+        }
+        for (Persona p : super.getMundo().getListaAlbaniles()) {
+            if (iniciarOperacionesPersona5(p))
+                this.curarMatarPersonaProbabilidad(p);
+        }
+        for (Persona p : super.getMundo().getListaHerreros()) {
+            if (iniciarOperacionesPersona5(p))
+                this.curarMatarPersonaProbabilidad(p);
+        }
+        for (Persona p : super.getMundo().getListaCocineros()) {
+            if (iniciarOperacionesPersona5(p))
+                this.curarMatarPersonaProbabilidad(p);
+        }
+    }
+
+    public void validarPersonaOperaciones10(Persona p) {
+        p.aumentarContadorOperaciones10();
+        if (this.iniciarOperacionesPersona10(p)) {
+            this.matarPersona(p);
+        }
     }
 }

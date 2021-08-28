@@ -9,6 +9,21 @@ public class Bicicleta extends Vehiculo{
         puedeSerConducida = false;
     }
 
+    public Bicicleta(int numeroLlantas, String nombre, Boolean puedeSerConducida) {
+        super(numeroLlantas, nombre);
+        this.puedeSerConducida = puedeSerConducida;
+    }
+
+    @Override
+    public String toFile() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(super.getNumeroLlantas() + "\n");
+        stringBuilder.append(super.getNombre() + "\n");
+        stringBuilder.append(puedeSerConducida + "\n");
+        stringBuilder.append("/Bicicileta\n");
+        return stringBuilder.toString();
+    }
+
     //Metodos no utilizados
     @Override
     public boolean puedeGanarInteres() {
@@ -26,6 +41,9 @@ public class Bicicleta extends Vehiculo{
     public Boolean getPuedeSerConducida() {
         return puedeSerConducida;
     }
+
+
+
     @Override
     public void conducir() {
         System.out.println("Conducción de bicicleta: debe mantener el balance y pedalear de manera continua");

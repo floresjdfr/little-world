@@ -19,6 +19,10 @@ public class AdministrarCreacionPersona extends Administrador {
     }
 
     public Boolean crearHerrero(int id, String nombre, String apellidos, Boolean salir) {
+        if (validaciones.existeUsuario(id)){
+            System.out.println("Persona con esa identificacion ya existe");
+            return false;
+        }
 
         try {
 
@@ -48,6 +52,11 @@ public class AdministrarCreacionPersona extends Administrador {
 
     public Boolean crearAlbañil(int id, String nombre, String apellidos, Boolean salir) {
 
+        if (validaciones.existeUsuario(id)){
+            System.out.println("Persona con esa identificacion ya existe");
+            return false;
+        }
+
         try {
 
             int cantDoc = super.getMundo().getListaDoctores().size();//Cantidad actual de doctores
@@ -76,8 +85,13 @@ public class AdministrarCreacionPersona extends Administrador {
     }
 
     public Boolean crearCarpintero(int id, String nombre, String apellidos, Boolean salir) {
-        try {
 
+        if (validaciones.existeUsuario(id)){
+            System.out.println("Persona con esa identificacion ya existe");
+            return false;
+        }
+
+        try {
             int cantDoc = super.getMundo().getListaDoctores().size();//Cantidad actual de doctores
             int cantCarp;
 
@@ -104,6 +118,11 @@ public class AdministrarCreacionPersona extends Administrador {
     }
 
     public void crearCocinero(int id, String nombre, String apellidos, String recetas, Boolean salir) {
+
+        if (validaciones.existeUsuario(id)){
+            System.out.println("Persona con esa identificacion ya existe");
+            return;
+        }
 
         String[] arrRecetas = recetas.toLowerCase(Locale.ROOT).split(",");
         ArrayList<String> listaRecetas = new ArrayList<>(Arrays.asList(arrRecetas));
@@ -142,6 +161,11 @@ public class AdministrarCreacionPersona extends Administrador {
     }
 
     public void crearDoctor(int id, String nombre, String apellidos, String especialidad, Boolean salir) {
+
+        if (validaciones.existeUsuario(id)){
+            System.out.println("Persona con esa identificacion ya existe");
+            return;
+        }
 
         Doctor nuevoDoctor = new Doctor(id, nombre, apellidos, 0, 0, new ArrayList<>(), new ArrayList<>(), especialidad);
         super.getMundo().crearDoctor(nuevoDoctor);

@@ -18,7 +18,23 @@ public abstract class Persona implements Prestamista {
     private Boolean personaSaludable;
     private ArrayList<Vehiculo> vehiculos;
     private ArrayList<Prestamo> prestamos;
+    private int contadorOperaciones5;
+    private int contadorOperaciones10;
 
+
+    public Persona(int id, String nombre, String apellidos, double dinero, int casas, Boolean personaSaludable,
+                   int contadorOperaciones5, int contadorOperaciones10, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos) {
+        Id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.dinero = dinero;
+        this.casas = casas;
+        this.personaSaludable = personaSaludable;
+        this.vehiculos = vehiculos;
+        this.prestamos = prestamos;
+        this.contadorOperaciones5 = contadorOperaciones5;
+        this.contadorOperaciones10 = contadorOperaciones10;
+    }
 
     public Persona(int id, String nombre, String apellidos, double dinero, int casas, ArrayList<Vehiculo> vehiculos, ArrayList<Prestamo> prestamos) {
         Id = id;
@@ -30,6 +46,8 @@ public abstract class Persona implements Prestamista {
         this.prestamos = prestamos;
         personaSaludable = true;
     }
+
+    public abstract String toFile();
 
     public int getId() {
         return Id;
@@ -94,13 +112,29 @@ public abstract class Persona implements Prestamista {
         this.personaSaludable = personaSaludable;
     }
 
+    public int getContadorOperaciones5() {
+        return contadorOperaciones5;
+    }
+
+    public void setContadorOperaciones5(int contadorOperaciones5) {
+        this.contadorOperaciones5 = contadorOperaciones5;
+    }
+
+    public int getContadorOperaciones10() {
+        return contadorOperaciones10;
+    }
+
+    public void setContadorOperaciones10(int contadorOperaciones10) {
+        this.contadorOperaciones10 = contadorOperaciones10;
+    }
+
     public abstract void ganarDinero(double cantidad);
 
     public abstract void perderDinero(double cantidad);
 
     @Override
     public String toString() {
-        return "Id:" + Id + '\n' +
+        return  "Id:" + Id + '\n' +
                 "Nombre: " + nombre + '\n' +
                 "Apellidos: " + apellidos + '\n' +
                 "Estado de salud: " + (personaSaludable ? "Saludable" : "Enfermo") + '\n' +
@@ -226,8 +260,11 @@ public abstract class Persona implements Prestamista {
         for (int i = 0; i < prestamosCopy.size(); i++) {
             if (prestamosCopy.get(i).getIdPrestamista() == prestamista) {
                 prestamosCopy.get(i).abonar(abono);
-                if (!prestamosCopy.get(i).getEstado())//En caso que el prestamo sea pagado en su totalidad
+                if (!prestamosCopy.get(i).getEstado()) {//En caso que el prestamo sea pagado en su totalidad
                     prestamosCopy.remove(i);
+                    if (prestamosCopy.size() == 0)
+                        this.resetearContadorOperaciones10();
+                }
             }
         }
     }
@@ -257,6 +294,18 @@ public abstract class Persona implements Prestamista {
                     v.setPuedeSerConducida(true);
             }
         }
+    }
+    public void aumentarContadorOperaciones5(){
+        contadorOperaciones5++;
+    }
+    public void aumentarContadorOperaciones10(){
+        contadorOperaciones10++;
+    }
+    public void resetearContadorOperaciones5(){
+        contadorOperaciones5 = 0;
+    }
+    public void resetearContadorOperaciones10(){
+        contadorOperaciones10 = 0;
     }
 }
 

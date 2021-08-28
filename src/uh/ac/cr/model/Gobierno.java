@@ -15,6 +15,16 @@ public class Gobierno implements Prestamista {
         this.prestamos = prestamos;
     }
 
+    public String toFile(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(capitalEconomico  + "\n");
+        for (Prestamo p: prestamos){
+            stringBuilder.append(p.toFile());
+        }
+        return stringBuilder.toString();
+    }
+
+
     public double getCapitalEconomico() {
         return capitalEconomico;
     }
